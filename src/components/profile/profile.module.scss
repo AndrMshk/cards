@@ -1,0 +1,13 @@
+.main {
+	display: flex;
+	justify-content: center;
+	.content {
+		height: 552px;
+		width: 413px;
+		margin-top: 60px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+	}
+}

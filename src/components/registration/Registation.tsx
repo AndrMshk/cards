@@ -1,29 +1,28 @@
 import React from 'react';
-import { Button, Checkbox, FormControl, FormControlLabel, IconButton, Paper, TextField } from '@mui/material';
+import { Button, FormControl, IconButton, Paper, TextField } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
-import style from './login.module.scss';
+import style from './registration.module.scss';
 
-export const Login = () => {
+export const Registration = () => {
 
   const [isShowPassword, setIsShowPassword] = React.useState(false);
 
-  type FormikErrorType = { email?: string, password?: string, rememberMe?: boolean }
+  type FormikErrorType = { email?: string, password?: string }
 
   const formik = useFormik({
-    initialValues: { email: '', password: '', rememberMe: false },
+    initialValues: { email: '', password: '', confirmPassword: '' },
     validate: (values) => {
       const errors: FormikErrorType = {};
-      if (!values.email) {
-        errors.email = 'Required';
-      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+      if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
         errors.email = 'Invalid email address';
       }
-      if (!values.password) {
-        errors.password = 'Required';
-      } else if (values.password.length < 8) {
+      if (values.password.length < 8) {
         errors.password = 'Password is too short';
+      }
+      if (values.password !== values.confirmPassword) {
+        errors.password = 'Password ne sovpal';
       }
       return errors;
     },
@@ -35,7 +34,7 @@ export const Login = () => {
   return (
     <div className={style.main}>
       <Paper elevation={3} className={style.content}>
-        <h2>Sign In</h2>
+        <h2>Sign Up</h2>
         <form onSubmit={formik.handleSubmit}>
           <FormControl variant="standard" className={style.input}>
             <TextField
@@ -65,20 +64,26 @@ export const Login = () => {
               {isShowPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>
           </FormControl>
-          <div className={style.checkbox}>
-            <FormControlLabel
-              label="Remember me"
-              control={<Checkbox
-                color="primary"
-                checked={formik.values.rememberMe}
-                {...formik.getFieldProps('rememberMe')} />} />
-          </div>
-          <div className={style.forgotPassword}>
-            <Link to="/password-recovery">Forgot Password</Link>
-          </div>
-          <Button className={style.button} color="primary" variant="contained" type="submit">Login</Button>
-          Don’t have an account?
-          <Link to="/registration">Sign Up</Link>
+          <FormControl variant="standard" className={style.input}>
+            <TextField
+              variant="standard"
+              color="primary"
+              id="confirmPassword"
+              autoComplete="on"
+              label="Confirm password"
+              type={isShowPassword ? 'text' : 'password'}
+              helperText={formik.errors.password}
+              error={!!formik.errors.password && formik.touched.password}
+              {...formik.getFieldProps('confirmPassword')} />
+            <IconButton
+              onClick={() => {setIsShowPassword(!isShowPassword);}}
+              onMouseDown={e => {e.preventDefault();}}>
+              {isShowPassword ? <VisibilityOff /> : <Visibility />}
+            </IconButton>
+          </FormControl>
+          <Button className={style.button} color="primary" variant='contained' type="submit">Sign Up</Button>
+          Already have an account?
+          <Link to={'/login'}>Sign In</Link>
         </form>
       </Paper>
     </div>

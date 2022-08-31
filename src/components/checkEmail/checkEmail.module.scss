@@ -1,0 +1,33 @@
+.main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	.content {
+		height: 450px;
+		width: 413px;
+		margin-top: 60px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+	}
+	h2 {
+		margin-top: 35px;
+	}
+	.button {
+		width: 347px;
+		height: 36px;
+		border-radius: 30px;
+		background: #366eff;
+		text-transform: none;
+		font-weight: 500;
+		font-size: 16px;
+		margin-bottom: 50px;
+	}
+	.info {
+		text-align: center;
+		margin-bottom: 43px;
+		margin-top: 31px;
+	}
+}
+
