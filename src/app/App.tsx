@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { ProjectRoutes } from '../components/routes/Routes';
 import style from './app.module.scss';
-
 import { Header } from '../components/header/Header';
 import { useAppDispatch, useAppSelector } from './store';
 import { authMe } from './app-async-actions';
@@ -20,7 +19,7 @@ function App() {
 
   if (!isInitialized) {
     return (
-      <div className={style.loading}>
+      <div className={style.circularProgress}>
         <CircularProgress />
       </div>
     );
@@ -29,7 +28,7 @@ function App() {
   return (
     <div className={style.main}>
       <Header />
-      {isLoading && <LinearProgress />}
+      {isLoading && <div className={style.linearProgress}><LinearProgress /></div>}
       <ProjectRoutes />
     </div>
   );

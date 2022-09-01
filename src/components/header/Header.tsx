@@ -70,6 +70,7 @@ export const Header = () => {
         ? <div className={style.profileInfo}>
           <h5>{name}</h5>
           <Avatar
+            onClick={() => {navigate('/profile');}}
             className={style.avatar}
             alt="Remy Sharp"
             src={avatar} />

@@ -1,12 +1,18 @@
 .main {
 	height: 100%;
 	width: 100%;
+	position: relative;
 }
 
-.loading {
+.circularProgress {
 	height: 100vh;
 	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+.linearProgress {
+	width: 100%;
+	position: fixed;
+	top: 60px
 }
