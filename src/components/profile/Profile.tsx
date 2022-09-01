@@ -8,9 +8,9 @@ import { useFormik } from 'formik';
 import { BackButtonComponent } from '../../common/backButtonComponent/BackButtonComponent';
 import { AvatarComponent } from './AvatarComponent';
 import { EditNameForm } from './EditNameForm';
-import { setNewUserName } from './profile-reducer';
 import { Navigate } from 'react-router-dom';
-import { logout } from '../auth/auth-reducer';
+import { setNewUserName } from './profile-async-actions';
+import { logout } from '../auth/auth-async-actions';
 
 export const Profile = () => {
 

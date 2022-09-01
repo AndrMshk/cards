@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5b0c45ad-f960-4afc-810a-512b6b6f4985" name="Default Changelist" comment="create reducers and api" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+        <option value="SCSS File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2E7abzemWo8BS16NOgzxkbIRR2q" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/newPassword" />
+    <property name="list.type.of.created.stylesheet" value="SCSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="ts.external.directory.path" value="D:\Code\incubator\cards\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Code\incubator\cards\src\components\auth" />
+      <recent name="D:\Code\incubator\cards\src\components\checkEmail" />
+      <recent name="D:\Code\incubator\cards\src\components\navigation" />
+      <recent name="D:\Code\incubator\cards\src\app" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Code\incubator\cards\src\components\newPassword" />
+      <recent name="D:\Code\incubator\cards\src\components\checkEmail" />
+      <recent name="D:\Code\incubator\cards\src\components\passwordRecovery" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5b0c45ad-f960-4afc-810a-512b6b6f4985" name="Default Changelist" comment="" />
+      <created>1661949151689</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1661949151689</updated>
+      <workItem from="1661949157051" duration="19699000" />
+      <workItem from="1661969853807" duration="28000" />
+      <workItem from="1662016475171" duration="9101000" />
+    </task>
+    <task id="LOCAL-00001" summary="login + header">
+      <created>1661962974182</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1661962974182</updated>
+    </task>
+    <task id="LOCAL-00002" summary="passwordRecovery + newPassword + letter + profile (not done)">
+      <created>1661969656056</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1661969656056</updated>
+    </task>
+    <task id="LOCAL-00003" summary="create reducers and api">
+      <created>1662034900702</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1662034900703</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="login + header" />
+    <MESSAGE value="passwordRecovery + newPassword + letter + profile (not done)" />
+    <MESSAGE value="create reducers and api" />
+    <option name="LAST_COMMIT_MESSAGE" value="create reducers and api" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="828" y="436" key="#ESLint" timestamp="1662016498233">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="828" y="436" key="#ESLint/-1920.0.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1662016498233" />
+    <state x="552" y="245" key="Vcs.Push.Dialog.v2" timestamp="1662034903090">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="552" y="245" key="Vcs.Push.Dialog.v2/-1920.0.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1662034903090" />
+    <state x="648" y="139" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1661964420086">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="648" y="139" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/-1920.0.1280.700/0.0.1920.1050@0.0.1920.1050" timestamp="1661964420086" />
+  </component>
+</project>

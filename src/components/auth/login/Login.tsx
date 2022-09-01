@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import style from './login.module.scss';
 import { useAppDispatch } from '../../../app/store';
-import { login } from '../auth-reducer';
+import { login } from '../auth-async-actions';
 
 export const Login = () => {
 
