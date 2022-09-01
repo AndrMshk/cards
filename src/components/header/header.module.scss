@@ -9,7 +9,6 @@
 		width: 113px;
 		height: 36px;
 		border-radius: 30px;
-		background: #366eff;
 		text-transform: none;
 		font-weight: 500;
 		font-size: 16px;
@@ -20,5 +19,15 @@
 		margin: 0 6px;
 		display: flex;
 		align-items: center;
+	}
+	.profileInfo {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 12px;
+		.avatar {
+			height: 36px;
+			width: 36px;
+		}
 	}
 }

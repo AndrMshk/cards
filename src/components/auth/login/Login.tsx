@@ -1,15 +1,17 @@
 import React from 'react';
 import { Button, Checkbox, FormControl, FormControlLabel, IconButton, Paper, TextField } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import style from './login.module.scss';
-import { useAppDispatch } from '../../../app/store';
+import { useAppDispatch, useAppSelector } from '../../../app/store';
 import { login } from '../auth-async-actions';
 
 export const Login = () => {
 
   const dispatch = useAppDispatch();
+
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
 
   const [isShowPassword, setIsShowPassword] = React.useState(false);
 
@@ -35,6 +37,10 @@ export const Login = () => {
       dispatch(login(values));
     },
   });
+
+  if (isLoggedIn) {
+    return <Navigate to={'/profile'} />;
+  }
 
   return (
     <div className={style.main}>

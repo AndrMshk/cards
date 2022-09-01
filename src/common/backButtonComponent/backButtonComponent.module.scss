@@ -1,14 +1,15 @@
-.wrapper {
-    width: 160px;
-    cursor: pointer;
+.main {
+	margin-top: 60px;
+	margin-right: 10px;
+	width: 160px;
+	cursor: pointer;
+	.back {
+		margin-left: 12px;
+		font-weight: 500;
+		font-size: 15px;
+	}
 }
 
-.wrapper:hover {
-    transform: scale(1.03);
-}
 
-.back {
-    margin-left: 12px;
-    font-weight: 500;
-    font-size: 15px;
-}
+
+

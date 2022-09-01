@@ -5,6 +5,7 @@ import { PasswordRecovery } from '../auth/passwordRecovery/PasswordRecovery';
 import { CheckEmail } from '../auth/checkEmail/CheckEmail';
 import { NewPassword } from '../auth/newPassword/NewPassword';
 import { Profile } from '../profile/Profile';
+import { Packs } from '../packs/Packs';
 
 export const ProjectRoutes = () => {
   return <div>
@@ -16,7 +17,7 @@ export const ProjectRoutes = () => {
       <Route path={'/password-recovery/:email'} element={<CheckEmail/>} />
       <Route path={'/profile'} element={<Profile/>} />
       <Route path={'/registration'} element={<Registration/>} />
-      <Route path={'/packs'} element={<div></div>} />
+      <Route path={'/packs'} element={<Packs/>} />
       <Route path={'/cards/:packId/:packName'} element={<div></div>} />
       <Route path={'/learn/:packId/:packName'} element={<div></div>} />
       <Route path={'/404'} element={<div></div>} />

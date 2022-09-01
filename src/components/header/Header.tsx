@@ -1,10 +1,11 @@
 import React from 'react';
 import incubatorLogo from '../../assets/incubator.png';
-import { Button } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
 import style from './header.module.scss';
+import { useAppSelector } from '../../app/store';
+import { Avatar, Button } from '@mui/material';
 
 const paths = [
   {
@@ -49,6 +50,9 @@ export const Header = () => {
 
   const navigate = useNavigate();
 
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
+  const { avatar, name } = useAppSelector(state => state.profile);
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -62,7 +66,18 @@ export const Header = () => {
       <div className={style.img} onClick={(event) => {setAnchorEl(event.currentTarget);}}>
         <img src={incubatorLogo} alt="it-incubator" />
       </div>
-      <Button variant="contained">Sign in</Button>
+      {isLoggedIn
+        ? <div className={style.profileInfo}>
+          <h5>{name}</h5>
+          <Avatar
+            className={style.avatar}
+            alt="Remy Sharp"
+            src={avatar} />
+        </div>
+        : <Button
+          variant="contained"
+          onClick={() => navigate('/login')}>Sign in</Button>
+      }
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
@@ -74,3 +89,4 @@ export const Header = () => {
     </div>
   );
 };
+

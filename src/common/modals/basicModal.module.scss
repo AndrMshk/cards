@@ -1,0 +1,29 @@
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.addItemField {
+    width: 100%;
+}
+
+.private {
+    text-align: center;
+    margin: 10px 0 0;
+}
+
+.buttonsBlock {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.addDeckButton {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
