@@ -1,6 +1,6 @@
 import { To, useNavigate } from 'react-router-dom';
 import React from 'react';
-import classes from './BackToPacksList.module.css';
+import classes from './backButtonComponent.module.scss';
 
 export const BackButtonComponent: React.FC<BackButtonComponentPropsType> = ({ title = 'Back', path = -1 as To }) => {
   const navigate = useNavigate();

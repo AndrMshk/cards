@@ -4,8 +4,12 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import style from './login.module.scss';
+import { useAppDispatch } from '../../../app/store';
+import { login } from '../auth-reducer';
 
 export const Login = () => {
+
+  const dispatch = useAppDispatch();
 
   const [isShowPassword, setIsShowPassword] = React.useState(false);
 
@@ -28,7 +32,7 @@ export const Login = () => {
       return errors;
     },
     onSubmit: values => {
-      console.log(values);
+      dispatch(login(values));
     },
   });
 

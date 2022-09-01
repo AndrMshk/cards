@@ -1,9 +1,9 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { Login } from '../login/Login';
-import { Registration } from '../registration/Registation';
-import { PasswordRecovery } from '../passwordRecovery/PasswordRecovery';
-import { CheckEmail } from '../checkEmail/CheckEmail';
-import { NewPassword } from '../newPassword/NewPassword';
+import { Login } from '../auth/login/Login';
+import { Registration } from '../auth/registration/Registation';
+import { PasswordRecovery } from '../auth/passwordRecovery/PasswordRecovery';
+import { CheckEmail } from '../auth/checkEmail/CheckEmail';
+import { NewPassword } from '../auth/newPassword/NewPassword';
 import { Profile } from '../profile/Profile';
 
 export const ProjectRoutes = () => {
