@@ -57,7 +57,7 @@ export const CardsTable: React.FC<CardsTablePropsType> = ({ cards, userId, pageC
                   updateCardHandler={updateCardHandler} />))}
             </TableBody>
           </Table>
-          : <div>Cards not found</div>}
+          : <h3>Cards not found</h3>}
       </TableContainer>
       <TablePagination
         component="div"

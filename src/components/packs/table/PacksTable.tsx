@@ -82,11 +82,12 @@ export const PacksTable: React.FC<PacksTablePropsType> = ({ packs, userId, pageC
           ? <Table aria-label="simple table">
             <TableHead className={style.tableHeader}>
               <TableRow>
-                {headersForSort.map((el, index) => <SortTableCell
-                  key={index}
-                  el={el}
-                  showIsAvailableToSort={showIsAvailableToSortHandler}
-                  changeSort={changeSortHandler} />)}
+                {headersForSort.map((el, index) =>
+                  <SortTableCell
+                    key={index}
+                    el={el}
+                    showIsAvailableToSort={showIsAvailableToSortHandler}
+                    changeSort={changeSortHandler} />)}
                 <TableCell className={style.sortTableCell} align="center">Actions</TableCell>
               </TableRow>
             </TableHead>

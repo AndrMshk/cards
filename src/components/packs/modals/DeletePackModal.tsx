@@ -8,9 +8,7 @@ export const DeletePackModal: React.FC<DeletePackPropsType> =
 
     const dispatch = useAppDispatch();
 
-    const deletePackHandler = () => {
-      packId && dispatch(deletePack(packId));
-    };
+    const deletePackHandler = () => {packId && dispatch(deletePack(packId));};
 
     return (
       <BasicModal
@@ -18,8 +16,9 @@ export const DeletePackModal: React.FC<DeletePackPropsType> =
         setIsOpenModal={setIsOpenModal}
         operationTitle="Add new Pack"
         buttonName="Yes"
+        isForDelete
         handleOperation={deletePackHandler}>
-        <div>Do you really want to remove pack <b>{packName}</b>?</div>
+        <div style={{ wordWrap: 'break-word' }}>Do you really want to remove pack <b>{packName}</b>?</div>
         <div>The pack will be removed.</div>
       </BasicModal>
     );

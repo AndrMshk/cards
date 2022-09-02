@@ -85,12 +85,15 @@
 			}
 			.sortTableCell {
 				height: 100%;
-				position: relative;
+				.title {
+					position: relative;
+					display: inline-block;
+				}
 				svg {
 					cursor: pointer;
 					position: absolute;
-					top: 25px;
-					right: 6px;
+					top: 0;
+					right: -15px;
 				}
 			}
 			.tableHeader {

@@ -18,8 +18,11 @@ export const DeleteCardModal: React.FC<DeleteCardPropsType> =
         setIsOpenModal={setIsOpenModal}
         operationTitle="Add new Card"
         buttonName="Save"
+        isForDelete
         handleOperation={deleteCardHandler}>
-        <div>Do you really want to remove card with question <b>{cardQuestion}</b>?</div>
+        <div style={{ wordWrap: 'break-word' }}>
+          Do you really want to remove card with question <b>{cardQuestion}</b>?
+        </div>
         <div>The card will be removed.</div>
       </BasicModal>
     );

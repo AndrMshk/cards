@@ -4,6 +4,7 @@ import { useAppDispatch } from '../../../app/bll-dal/store';
 import { useParams } from 'react-router-dom';
 import { BasicModal } from '../../../common/basicModal/BasicModal';
 import { createCard } from '../bll-dal/cards-async-actions';
+import style from '../../../common/basicModal/basicModal.module.scss';
 
 export const AddNewCardModal: React.FC<AddNewCardPropsType> =
   React.memo(({ isOpenModal, setIsOpenModal }) => {
@@ -28,18 +29,20 @@ export const AddNewCardModal: React.FC<AddNewCardPropsType> =
         operationTitle="Add new Card"
         buttonName="Save"
         handleOperation={addNewCard}>
-        <TextField
-          label="Question"
-          variant="standard"
-          color="secondary"
-          value={newCardQuestion}
-          onChange={e => setNewCardQuestion(e.currentTarget.value)} />
-        <TextField
-          label="Answer"
-          variant="standard"
-          color="secondary"
-          value={newCardAnswer}
-          onChange={e => setNewCardAnswer(e.currentTarget.value)} />
+        <div className={style.cardContent}>
+          <TextField
+            label="Question"
+            variant="standard"
+            color="primary"
+            value={newCardQuestion}
+            onChange={e => setNewCardQuestion(e.currentTarget.value)} />
+          <TextField
+            label="Answer"
+            variant="standard"
+            color="primary"
+            value={newCardAnswer}
+            onChange={e => setNewCardAnswer(e.currentTarget.value)} />
+        </div>
       </BasicModal>
     );
   });

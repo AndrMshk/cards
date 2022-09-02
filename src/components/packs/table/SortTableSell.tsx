@@ -23,17 +23,17 @@ export const SortTableCell: React.FC<SortTableCellPropsType> = ({ el, showIsAvai
   };
 
   return (
-    <TableCell
-      className={style.sortTableCell}
-      onMouseEnter={() => showIsAvailableToSort(el.title, true)}
-      onMouseLeave={() => showIsAvailableToSort(el.title, false)}
-      align="center">
-      <span>{el.title}</span>
-      <span style={{ display: 'inline-block', width: '20px' }}>
+    <TableCell className={style.sortTableCell} align="center">
+      <div className={style.title}
+           onMouseEnter={() => showIsAvailableToSort(el.title, true)}
+           onMouseLeave={() => showIsAvailableToSort(el.title, false)}
+      >{el.title}
+        <span style={{ display: 'inline-block', width: '20px' }}>
         {el.isAvailableToSort && el.sort === 'none' && <SortIcon onClick={() => {filterHandler('down');}} />}
-        {el.sort === 'down' && <ExpandMoreIcon onClick={() => { filterHandler('up');}} />}
-        {el.sort === 'up' && <ExpandLessIcon onClick={() => { filterHandler('none');}} />}
+          {el.sort === 'down' && <ExpandMoreIcon onClick={() => { filterHandler('up');}} />}
+          {el.sort === 'up' && <ExpandLessIcon onClick={() => { filterHandler('none');}} />}
       </span>
+      </div>
     </TableCell>
   );
 };

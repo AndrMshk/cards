@@ -13,7 +13,7 @@ export const AddNewPackModal: React.FC<AddNewPackPropsType> =
 
     const addNewPack = () => {
       dispatch(createPack(newPackName));
-      setNewPackName(newPackName);
+      setNewPackName('')
     };
 
     return (
@@ -24,9 +24,9 @@ export const AddNewPackModal: React.FC<AddNewPackPropsType> =
         buttonName="Save"
         handleOperation={addNewPack}>
         <TextField
-          label="Title"
+          label="Pack name"
           variant="standard"
-          color="secondary"
+          color="primary"
           value={newPackName}
           onChange={e => setNewPackName(e.currentTarget.value)} />
       </BasicModal>

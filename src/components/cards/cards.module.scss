@@ -21,6 +21,10 @@
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
+				h2 {
+					word-wrap: break-word;
+					max-width: 800px;
+				}
 				button {
 					width: 175px;
 					height: 36px;
@@ -46,7 +50,7 @@
 			word-wrap: break-word;
 		}
 		th {
-			background-color: #EFEFEF;
+			background-color: #efefef;
 			font-weight: bold;
 		}
 		tr {

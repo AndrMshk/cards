@@ -8,11 +8,12 @@ export const UpdatePackModal: React.FC<UpdatePackType> =
   React.memo(({ packId, packName, isOpenModal, setIsOpenModal }) => {
 
     const dispatch = useAppDispatch();
+
     const [newPackName, setNewPackName] = React.useState(packName);
 
     const updatePackHandler = () => {
       packId && dispatch(updatePack(packId, newPackName));
-      setNewPackName('');
+      setNewPackName(newPackName);
     };
 
     return (
@@ -25,10 +26,10 @@ export const UpdatePackModal: React.FC<UpdatePackType> =
         <TextField
           label="Title"
           variant="standard"
-          color="secondary"
+          color="primary"
           value={newPackName}
           onChange={e => setNewPackName(e.currentTarget.value)} />
-        <div>Do you really want to change <b>{packName}</b>?</div>
+        <div style={{ wordWrap: 'break-word', marginTop: '10px' }}>Do you really want to change <b>{packName}</b>?</div>
       </BasicModal>
     );
   });
