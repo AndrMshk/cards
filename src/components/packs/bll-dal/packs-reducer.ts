@@ -1,4 +1,4 @@
-import { PackType } from '../../app/types';
+import { PackType } from '../../../app/bll-dal/types';
 
 const initialState = {
   cardPacks: [] as PackType[],

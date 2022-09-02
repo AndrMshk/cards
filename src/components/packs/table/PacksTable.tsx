@@ -6,13 +6,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useAppDispatch } from '../../../app/store';
+import { useAppDispatch } from '../../../app/bll-dal/store';
 import TablePagination from '@mui/material/TablePagination';
 import { PackItem } from './PackItem';
 import { SortTableCell } from './SortTableSell';
-import { setCurrentPageAction, setCurrentPageCountAction } from '../packs-reducer';
-import { deletePack, updatePack } from '../packs-async-actions';
-import { PackType } from '../../../app/types';
+import { setCurrentPageAction, setCurrentPageCountAction } from '../bll-dal/packs-reducer';
+import { deletePack, updatePack } from '../bll-dal/packs-async-actions';
+import { PackType } from '../../../app/bll-dal/types';
 import style from '../packs.module.scss';
 
 export const formatDate = (date: Date | string | number) => {

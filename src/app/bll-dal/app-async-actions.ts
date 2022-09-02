@@ -1,9 +1,9 @@
 import { ThunkType } from './types';
-import { authAPI } from '../components/auth/auth-api';
-import { setProfileAction } from '../components/profile/profile-reducer';
+import { authAPI } from '../../components/auth/bll-dal/auth-api';
+import { setProfileAction } from '../../components/profile/bll-dal/profile-reducer';
 import axios from 'axios';
 import { setAppErrorAction, setAppIsInitializedAction, setAppIsLoadingAction } from './app-reducer';
-import { setIsLoggedInAction } from '../components/auth/auth-reducer';
+import { setIsLoggedInAction } from '../../components/auth/bll-dal/auth-reducer';
 
 export const authMe = (): ThunkType => async dispatch => {
   try {

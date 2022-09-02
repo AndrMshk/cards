@@ -4,7 +4,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
 import style from './header.module.scss';
-import { useAppSelector } from '../../app/store';
+import { useAppSelector } from '../../app/bll-dal/store';
 import { Avatar, Button } from '@mui/material';
 
 const paths = [

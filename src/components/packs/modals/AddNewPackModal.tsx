@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { TextField } from '@mui/material';
-import { useAppDispatch } from '../../../app/store';
-import { BasicModal } from '../../../common/modals/BasicModal';
-import { createPack } from '../packs-async-actions';
+import { useAppDispatch } from '../../../app/bll-dal/store';
+import { BasicModal } from '../../../common/basicModal/BasicModal';
+import { createPack } from '../bll-dal/packs-async-actions';
 
 export const AddNewPackModal: React.FC<AddNewPackPropsType> =
   React.memo(({ isOpenModal, setIsOpenModal }) => {

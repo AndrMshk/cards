@@ -1,7 +1,7 @@
 import React from 'react';
-import { useAppDispatch } from '../../../app/store';
-import { BasicModal } from '../../../common/modals/BasicModal';
-import { deletePack } from '../packs-async-actions';
+import { useAppDispatch } from '../../../app/bll-dal/store';
+import { BasicModal } from '../../../common/basicModal/BasicModal';
+import { deletePack } from '../bll-dal/packs-async-actions';
 
 export const DeletePackModal: React.FC<DeletePackPropsType> =
   React.memo(({ packId, packName, isOpenModal, setIsOpenModal }) => {

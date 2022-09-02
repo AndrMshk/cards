@@ -9,7 +9,7 @@ import { formatDate } from './PacksTable';
 import { DeletePackModal } from '../modals/DeletePackModal';
 import { UpdatePackModal } from '../modals/UpdatePackModal';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { PackType } from '../../../app/types';
+import { PackType } from '../../../app/bll-dal/types';
 import style from '../packs.module.scss';
 
 export const PackItem: React.FC<PackItemPropsType> = ({ pack, userId }) => {
@@ -37,10 +37,10 @@ export const PackItem: React.FC<PackItemPropsType> = ({ pack, userId }) => {
       <TableCell component="th" scope="row" align="left" className={style.packName}>
         <NavLink to={`/cards/${pack._id}/${pack.name}`}>{pack.name}</NavLink>
       </TableCell>
-      <TableCell align="right" style={{ width: '110px' }}>{pack.cardsCount}</TableCell>
-      <TableCell align="right" style={{ wordWrap: 'break-word', width: '240px' }}>{pack.user_name}</TableCell>
-      <TableCell align="right" style={{ width: '150px' }}>{formatDate(pack.updated)}</TableCell>
-      <TableCell sx={{ textAlign: 'right' }} style={{ width: '200px' }}>
+      <TableCell align="right" style={{ minWidth: '110px', maxWidth: '110px' }}>{pack.cardsCount}</TableCell>
+      <TableCell align="right" style={{ wordWrap: 'break-word', minWidth: '198px', maxWidth: '198px' }}>{pack.user_name}</TableCell>
+      <TableCell align="right" style={{ minWidth: '140px', maxWidth: '140px' }}>{formatDate(pack.updated)}</TableCell>
+      <TableCell sx={{ textAlign: 'right' }} style={{ minWidth: '200px', maxWidth: '200px' }}>
         <Button
           onClick={openModalDeletePack}
           disabled={userId !== pack.user_id}

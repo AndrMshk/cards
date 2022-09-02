@@ -1,5 +1,5 @@
-import { ParamsGetPackRequestType, ThunkType } from '../../app/types';
-import { setAppErrorAction, setAppIsLoadingAction } from '../../app/app-reducer';
+import { ParamsGetPackRequestType, ThunkType } from '../../../app/bll-dal/types';
+import { setAppErrorAction, setAppIsLoadingAction } from '../../../app/bll-dal/app-reducer';
 import { packsApi } from './packsApi';
 import axios from 'axios';
 import {

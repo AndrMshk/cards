@@ -4,8 +4,8 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Link, Navigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import style from './login.module.scss';
-import { useAppDispatch, useAppSelector } from '../../../app/store';
-import { login } from '../auth-async-actions';
+import { useAppDispatch, useAppSelector } from '../../../app/bll-dal/store';
+import { login } from '../bll-dal/auth-async-actions';
 
 export const Login = () => {
 

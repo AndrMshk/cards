@@ -2,11 +2,11 @@ import { applyMiddleware, combineReducers, legacy_createStore as createStore } f
 import thunk from 'redux-thunk';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { appReducer } from './app-reducer';
-import { authReducer } from '../components/auth/auth-reducer';
-import { profileReducer } from '../components/profile/profile-reducer';
+import { authReducer } from '../../components/auth/bll-dal/auth-reducer';
+import { profileReducer } from '../../components/profile/bll-dal/profile-reducer';
 import { DispatchType, RootStateType } from './types';
-import { cardsReducer } from '../components/cards/cards-reducer';
-import { packsReducer } from '../components/packs/packs-reducer';
+import { cardsReducer } from '../../components/cards/bll-dal/cards-reducer';
+import { packsReducer } from '../../components/packs/bll-dal/packs-reducer';
 
 export const rootReducer = combineReducers({
   app: appReducer,

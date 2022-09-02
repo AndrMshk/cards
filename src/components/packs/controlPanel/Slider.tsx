@@ -1,8 +1,8 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import { useAppDispatch, useAppSelector } from '../../app/store';
-import { sortPacksByCardsCountAction } from './packs-reducer';
+import { useAppDispatch, useAppSelector } from '../../../app/bll-dal/store';
+import { sortPacksByCardsCountAction } from '../bll-dal/packs-reducer';
 
 function valuetext(value: number) {
   return `${value}`;

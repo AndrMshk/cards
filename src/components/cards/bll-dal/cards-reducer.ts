@@ -1,4 +1,4 @@
-import { CardType, UpdatedGradeCardResponseType } from '../../app/types';
+import { CardType, UpdatedGradeCardResponseType } from '../../../app/bll-dal/types';
 
 const initialState = {
   cards: [] as CardType[],

@@ -1,7 +1,7 @@
-import { LoginRequestDataType, NewPasswordRequestDataType, SignUpRequestDataType, ThunkType } from '../../app/types';
-import { setAppErrorAction, setAppIsLoadingAction } from '../../app/app-reducer';
+import { LoginRequestDataType, NewPasswordRequestDataType, SignUpRequestDataType, ThunkType } from '../../../app/bll-dal/types';
+import { setAppErrorAction, setAppIsLoadingAction } from '../../../app/bll-dal/app-reducer';
 import { authAPI } from './auth-api';
-import { setProfileAction } from '../profile/profile-reducer';
+import { setProfileAction } from '../../profile/bll-dal/profile-reducer';
 import axios from 'axios';
 import { setIsLoggedInAction } from './auth-reducer';
 

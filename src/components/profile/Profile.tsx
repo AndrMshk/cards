@@ -3,14 +3,14 @@ import style from './profile.module.scss';
 import { Button, Paper } from '@mui/material';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
-import { useAppDispatch, useAppSelector } from '../../app/store';
+import { useAppDispatch, useAppSelector } from '../../app/bll-dal/store';
 import { useFormik } from 'formik';
 import { BackButtonComponent } from '../../common/backButtonComponent/BackButtonComponent';
-import { AvatarComponent } from './AvatarComponent';
-import { EditNameForm } from './EditNameForm';
+import { AvatarComponent } from './components/AvatarComponent';
+import { EditNameForm } from './components/EditNameForm';
 import { Navigate } from 'react-router-dom';
-import { setNewUserName } from './profile-async-actions';
-import { logout } from '../auth/auth-async-actions';
+import { setNewUserName } from './bll-dal/profile-async-actions';
+import { logout } from '../auth/bll-dal/auth-async-actions';
 
 export const Profile = () => {
 

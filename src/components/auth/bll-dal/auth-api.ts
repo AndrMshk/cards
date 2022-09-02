@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { instance } from '../../app/app-api';
+import { instance } from '../../../app/bll-dal/app-api';
 import {
   ForgotRequestDataType,
   LoginRequestDataType,
@@ -9,7 +9,7 @@ import {
   SignUpRequestDataType,
   SignUpResponseType,
   UserType,
-} from '../../app/types';
+} from '../../../app/bll-dal/types';
 
 export const authAPI = {
   me() {

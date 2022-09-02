@@ -1,4 +1,4 @@
-import { UserType } from '../../app/types';
+import { UserType } from '../../../app/bll-dal/types';
 
 const initialState = {
   _id: '',

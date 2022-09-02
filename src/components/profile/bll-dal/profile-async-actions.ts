@@ -1,5 +1,5 @@
-import { ThunkType } from '../../app/types';
-import { setAppErrorAction, setAppIsLoadingAction } from '../../app/app-reducer';
+import { ThunkType } from '../../../app/bll-dal/types';
+import { setAppErrorAction, setAppIsLoadingAction } from '../../../app/bll-dal/app-reducer';
 import { profileApi } from './profile-api';
 import axios from 'axios';
 import { setNewUserNameAction } from './profile-reducer';

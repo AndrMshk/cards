@@ -1,8 +1,8 @@
 import React from 'react';
-import { useAppDispatch } from '../../../app/store';
+import { useAppDispatch } from '../../../app/bll-dal/store';
 import { TextField } from '@mui/material';
-import { updatePack } from '../packs-async-actions';
-import { BasicModal } from '../../../common/modals/BasicModal';
+import { updatePack } from '../bll-dal/packs-async-actions';
+import { BasicModal } from '../../../common/basicModal/BasicModal';
 
 export const UpdatePackModal: React.FC<UpdatePackType> =
   React.memo(({ packId, packName, isOpenModal, setIsOpenModal }) => {

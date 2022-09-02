@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import style from './packs.module.scss';
+import style from '../packs.module.scss';
 import { Box, Button, ButtonGroup, TextField } from '@mui/material';
-import { useAppDispatch } from '../../app/store';
-import { sortPacksByNameAction } from './packs-reducer';
+import { useAppDispatch } from '../../../app/bll-dal/store';
+import { sortPacksByNameAction } from '../bll-dal/packs-reducer';
 import { SliderFilter } from './Slider';
 
 type ControlsPanelPropsType = {

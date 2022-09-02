@@ -1,5 +1,5 @@
-import { CardType, ParamsGetCardsRequestType, ThunkType } from '../../app/types';
-import { setAppErrorAction, setAppIsLoadingAction } from '../../app/app-reducer';
+import { CardType, ParamsGetCardsRequestType, ThunkType } from '../../../app/bll-dal/types';
+import { setAppErrorAction, setAppIsLoadingAction } from '../../../app/bll-dal/app-reducer';
 import { cardsApi } from './cardsApi';
 import axios from 'axios';
 import {

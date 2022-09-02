@@ -1,6 +1,6 @@
 import {AxiosResponse} from 'axios';
-import { GetPacksResponseType, ParamsGetPackRequestType } from '../../app/types';
-import { instance } from '../../app/app-api';
+import { GetPacksResponseType, ParamsGetPackRequestType } from '../../../app/bll-dal/types';
+import { instance } from '../../../app/bll-dal/app-api';
 
 export const packsApi = {
     setPacks(params: ParamsGetPackRequestType) {

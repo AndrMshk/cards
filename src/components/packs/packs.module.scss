@@ -71,6 +71,8 @@
 			}
 			.packName {
 				word-wrap: break-word;
+				max-width: 200px;
+				min-width: 200px;
 				a {
 					text-decoration: none;
 					color: black;

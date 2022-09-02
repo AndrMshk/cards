@@ -1,10 +1,10 @@
 import React from 'react';
-import { useAppDispatch } from '../../../app/store';
+import { useAppDispatch } from '../../../app/bll-dal/store';
 import TableCell from '@mui/material/TableCell';
 import SortIcon from '@mui/icons-material/Sort';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import { setSortOrderAction } from '../packs-reducer';
+import { setSortOrderAction } from '../bll-dal/packs-reducer';
 import style from '../packs.module.scss';
 
 export const SortTableCell: React.FC<SortTableCellPropsType> = ({ el, showIsAvailableToSort, changeSort }) => {

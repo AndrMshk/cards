@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
-import { instance } from '../../app/app-api';
-import { UserType } from '../../app/types';
+import { instance } from '../../../app/bll-dal/app-api';
+import { UserType } from '../../../app/bll-dal/types';
 
 export const profileApi = {
   setNewUserName(name: string) {
