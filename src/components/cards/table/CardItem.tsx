@@ -7,13 +7,8 @@ import { DeleteCardModal } from '../modals/DeleteCardModal';
 import { UpdateCardModal } from '../modals/UpdateCardModal';
 import { CardType } from '../../../app/bll-dal/types';
 import { formatDate } from '../../packs/table/PacksTable';
-
-type CardItemPropsType = {
-  card: CardType
-  userId: string
-  deleteCardHandler: (cardId: string | undefined) => void
-  updateCardHandler: (cardId: string | undefined, cardAnswer: string, cardQuestion: string) => void
-}
+import style from '../cards.module.scss';
+import { useAppSelector } from '../../../app/bll-dal/store';
 
 export const CardItem: React.FC<CardItemPropsType> = ({ card, userId }) => {
 
@@ -22,38 +17,36 @@ export const CardItem: React.FC<CardItemPropsType> = ({ card, userId }) => {
   const [isOpenDeleteCardModal, setIsOpenDeleteCardModal] = useState(false);
   const [isOpenUpdateCardModal, setIsOpenUpdateCardModal] = useState(false);
 
-  const openModalDeleteCard = (cardId: string | undefined) => {
+  const isLoading = useAppSelector(state => state.app.isLoading)
+
+  const openModalDeleteCard = () => {
     setIsOpenDeleteCardModal(true);
     setDeleteCardData(card);
   };
 
-  const openModalUpdateCard = (cardId: string | undefined) => {
+  const openModalUpdateCard = () => {
     setIsOpenUpdateCardModal(true);
     setUpdateCardData(card);
   };
 
   return (
-    <TableRow
-      key={card._id}
-      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-    >
-      <TableCell component="th" scope="row">
-        {card.question}
-      </TableCell>
-      <TableCell align="right">{card.answer}</TableCell>
-      <TableCell align="right"><Rating name="read-only" value={card.grade} readOnly />
+    <TableRow key={card._id}>
+      <TableCell scope="row" className={style.text}>{card.question}</TableCell>
+      <TableCell className={style.text}>{card.answer}</TableCell>
+      <TableCell
+        align="right"
+        style={{ minWidth: '130px', maxWidth: '130px' }}>
+        <Rating name="read-only" value={card.grade} readOnly />
       </TableCell>
       {/*@ts-ignore*/}
-      <TableCell align="right">{formatDate(card.updated)}</TableCell>
-      <TableCell sx={{ textAlign: 'right' }}>
+      <TableCell align="right" className={style.text}>{formatDate(card.updated)}</TableCell>
+      <TableCell sx={{ textAlign: 'right' }} style={{ minWidth: '130px', maxWidth: '130px' }}>
         <Button
-          onClick={() => openModalDeleteCard(card._id)}
-          disabled={userId !== card.user_id}
+          onClick={openModalDeleteCard}
+          disabled={userId !== card.user_id || isLoading}
           color="error"
           size="small"
-          startIcon={<DeleteIcon />}>
-          Delete
-        </Button>
+          startIcon={<DeleteIcon />} />
         {deleteCardData && <DeleteCardModal
           cardId={deleteCardData._id}
           cardQuestion={deleteCardData.question}
@@ -61,12 +54,10 @@ export const CardItem: React.FC<CardItemPropsType> = ({ card, userId }) => {
           setIsOpenModal={setIsOpenDeleteCardModal} />
         }
         <Button
-          onClick={() => openModalUpdateCard(card._id)}
-          disabled={userId !== card.user_id}
-          color="secondary" size="small"
-          startIcon={<BorderColorIcon />}>
-          Edit
-        </Button>
+          onClick={openModalUpdateCard}
+          disabled={userId !== card.user_id || isLoading}
+          color="primary" size="small"
+          startIcon={<BorderColorIcon />} />
         {updateCardData && <UpdateCardModal
           cardId={updateCardData._id}
           cardQuestion={updateCardData.question}
@@ -77,4 +68,11 @@ export const CardItem: React.FC<CardItemPropsType> = ({ card, userId }) => {
     </TableRow>
   );
 };
+
+type CardItemPropsType = {
+  card: CardType
+  userId: string
+  deleteCardHandler: (cardId: string | undefined) => void
+  updateCardHandler: (cardId: string | undefined, cardAnswer: string, cardQuestion: string) => void
+}
 

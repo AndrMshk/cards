@@ -42,7 +42,7 @@ export const Cards = () => {
       <div className={style.content}>
         {userId !== packUserId
           ? <div className={style.headerBlock}>
-            <div className={style.title}><h3>{packName}</h3></div>
+            <div className={style.title}><h2>{packName}</h2></div>
             <TextField
               className={style.search}
               id="search"
@@ -54,7 +54,7 @@ export const Cards = () => {
           </div>
           : <div className={style.headerBlock}>
             <div className={style.title}>
-              <h3>{packName}</h3>
+              <h2>{packName}</h2>
               <Button
                 onClick={() => setIsOpenModalAddNewCard(true)}
                 variant="contained">Add new card</Button>
@@ -67,8 +67,7 @@ export const Cards = () => {
               value={question}
               onChange={e => setQuestion(e.target.value)} />
             <AddNewCardModal isOpenModal={isOpenModalAddNewCard} setIsOpenModal={setIsOpenModalAddNewCard} />
-          </div>
-        }
+          </div>}
         <CardsTable cards={cards} userId={userId} pageCount={cardsTotalCount} rowsPerPage={pageCount} />
       </div>
     </div>

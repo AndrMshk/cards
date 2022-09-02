@@ -12,61 +12,49 @@ import { CardItem } from './CardItem';
 import { setCurrentPageAction, setCurrentPageCountAction } from '../bll-dal/cards-reducer';
 import { deleteCard, updateCard } from '../bll-dal/cards-async-actions';
 import { CardType } from '../../../app/bll-dal/types';
+import style from '../cards.module.scss';
+
+const tableHeaderTitles = ['Question', 'Answer', 'Grade', 'Updated', 'Actions'];
 
 export const CardsTable: React.FC<CardsTablePropsType> = ({ cards, userId, pageCount, rowsPerPage }) => {
 
   const dispatch = useAppDispatch();
+
   const [page, setPage] = useState<number>(0);
 
-  const changePageHandler = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number,
-  ) => {
+  const changePageHandler = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage);
     dispatch(setCurrentPageAction(newPage + 1));
   };
 
-  const changeRowsPerPageHandler = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,) => {
+  const changeRowsPerPageHandler = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     dispatch(setCurrentPageCountAction(+event.target.value));
   };
 
-  const deleteCardHandler = (cardId: string | undefined) => {
-    if (cardId) {
-      dispatch(deleteCard(cardId));
-    }
-  };
+  const deleteCardHandler = (cardId: string | undefined) => {cardId && dispatch(deleteCard(cardId));};
 
   const updateCardHandler = (cardId: string | undefined, question: string, comment: string) => {
-    if (cardId && question && comment) {
-      dispatch(updateCard(cardId, question, comment));
-    }
+    if (cardId && question && comment) {dispatch(updateCard(cardId, question, comment));}
   };
 
   return (
-    <div>
+    <div className={style.cardsTable}>
       <TableContainer component={Paper}>
         {cards.length
-          ? <Table sx={{ minWidth: 400 }} aria-label="simple table">
+          ? <Table aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Question</TableCell>
-                <TableCell align="right">Answer</TableCell>
-                <TableCell align="right">Grade</TableCell>
-                <TableCell align="right">Updated</TableCell>
-                <TableCell align="right">Actions</TableCell>
+                {tableHeaderTitles.map(el => <TableCell align="center">{el}</TableCell>)}
               </TableRow>
             </TableHead>
             <TableBody>
-              {cards.map((card) => (
+              {cards.map(card => (
                 <CardItem
                   key={card._id}
                   card={card}
                   userId={userId}
                   deleteCardHandler={deleteCardHandler}
-                  updateCardHandler={updateCardHandler}
-                />
-              ))
-              }
+                  updateCardHandler={updateCardHandler} />))}
             </TableBody>
           </Table>
           : <div>Cards not found</div>}
@@ -78,8 +66,7 @@ export const CardsTable: React.FC<CardsTablePropsType> = ({ cards, userId, pageC
         onPageChange={changePageHandler}
         rowsPerPage={rowsPerPage}
         onRowsPerPageChange={changeRowsPerPageHandler}
-        rowsPerPageOptions={[5, 10, 15, 20]}
-      />
+        rowsPerPageOptions={[5, 10, 15, 20]} />
     </div>
   );
 };

@@ -19,36 +19,39 @@ export const formatDate = (date: Date | string | number) => {
   return new Date(date).toLocaleDateString('ru-RU') + ' ' + new Date(date).toLocaleTimeString();
 };
 
+const tableHeaderTitles = [
+  {
+    title: 'Name',
+    value: 'name',
+    isAvailableToSort: false,
+    sort: 'none',
+  },
+  {
+    title: 'Cards Count',
+    value: 'cardsCount',
+    isAvailableToSort: false,
+    sort: 'none',
+  },
+  {
+    title: 'Created By',
+    value: 'user_name',
+    isAvailableToSort: false,
+    sort: 'none',
+  },
+  {
+    title: 'Last Updated',
+    value: 'updated',
+    isAvailableToSort: false,
+    sort: 'none',
+  },
+];
+
 export const PacksTable: React.FC<PacksTablePropsType> = ({ packs, userId, pageCount, rowsPerPage }) => {
 
   const dispatch = useAppDispatch();
+
   const [page, setPage] = useState<number>(0);
-  const [headersForSort, setHeadersForSort] = useState([
-    {
-      title: 'Name',
-      value: 'name',
-      isAvailableToSort: false,
-      sort: 'none',
-    },
-    {
-      title: 'Cards Count',
-      value: 'cardsCount',
-      isAvailableToSort: false,
-      sort: 'none',
-    },
-    {
-      title: 'Created By',
-      value: 'user_name',
-      isAvailableToSort: false,
-      sort: 'none',
-    },
-    {
-      title: 'Last Updated',
-      value: 'updated',
-      isAvailableToSort: false,
-      sort: 'none',
-    },
-  ]);
+  const [headersForSort, setHeadersForSort] = useState(tableHeaderTitles);
 
   const showIsAvailableToSortHandler = (title: string, is: boolean) => {
     setHeadersForSort(headersForSort.map(
@@ -106,8 +109,7 @@ export const PacksTable: React.FC<PacksTablePropsType> = ({ packs, userId, pageC
         onPageChange={changePageHandler}
         rowsPerPage={rowsPerPage}
         onRowsPerPageChange={changeRowsPerPageHandler}
-        rowsPerPageOptions={[5, 10, 15, 20]}
-      />
+        rowsPerPageOptions={[5, 10, 15, 20]} />
     </div>
   );
 };

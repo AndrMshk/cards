@@ -66,6 +66,10 @@
 		}
 		.packsTable {
 			width: 100%;
+			th {
+				background-color: #EFEFEF;
+				font-weight: bold;
+			}
 			tr {
 				height: 70px;
 			}

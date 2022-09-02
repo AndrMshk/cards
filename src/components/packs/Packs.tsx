@@ -66,8 +66,7 @@ export const Packs = () => {
           packs={cardPacks}
           userId={userId}
           rowsPerPage={pageCount}
-          pageCount={cardPacksTotalCount}
-        />
+          pageCount={cardPacksTotalCount} />
       </div>
     </div>
   );
