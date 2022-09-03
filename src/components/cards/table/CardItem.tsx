@@ -51,7 +51,8 @@ export const CardItem: React.FC<CardItemPropsType> = ({ card, userId }) => {
           cardId={deleteCardData._id}
           cardQuestion={deleteCardData.question}
           isOpenModal={isOpenDeleteCardModal}
-          setIsOpenModal={setIsOpenDeleteCardModal} />
+          setIsOpenModal={setIsOpenDeleteCardModal}
+        />
         }
         <Button
           onClick={openModalUpdateCard}

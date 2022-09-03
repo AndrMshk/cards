@@ -1,92 +1,90 @@
 import React from 'react';
 import incubatorLogo from '../../assets/incubator.png';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
 import style from './header.module.scss';
-import { useAppSelector } from '../../app/bll-dal/store';
+import { useAppDispatch, useAppSelector } from '../../app/bll-dal/store';
 import { Avatar, Button } from '@mui/material';
-
-const paths = [
-  {
-    path: '/login',
-    title: 'Login',
-  },
-  {
-    path: '/registration',
-    title: 'Registration',
-  },
-  {
-    path: '/profile',
-    title: 'Profile',
-  },
-  {
-    path: '/404',
-    title: 'Error page',
-  },
-  {
-    path: '/password-recovery',
-    title: 'Password recovery',
-  },
-  {
-    path: '/password-recovery/mail@gmail.com',
-    title: 'Password recovery letter',
-  },
-  {
-    path: '/set-new-password/token',
-    title: 'New password',
-  },
-  {
-    path: '/packs',
-    title: 'Packs',
-  },
-  {
-    path: '/cards/:packId',
-    title: 'Cards',
-  },
-];
+import { logout } from '../auth/bll-dal/auth-async-actions';
+import { PositionedMenu } from '../../common/optionMenu/OptionMenu';
 
 export const Header = () => {
 
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const pathsMenuData = [
+    {
+      action: () => {navigate('/login');},
+      title: 'Login',
+    },
+    {
+      action: () => {navigate('/registration');},
+      title: 'Registration',
+    },
+    {
+      action: () => {navigate('/profile');},
+      title: 'Profile',
+    },
+    {
+      action: () => {navigate('/404');},
+      title: 'Error page',
+    },
+    {
+      action: () => {navigate('/password-recovery');},
+      title: 'Password recovery',
+    },
+    {
+      action: () => {navigate('/password-recovery/mail@gmail.com');},
+      title: 'Password recovery letter',
+    },
+    {
+      action: () => {navigate('/set-new-password/token');},
+      title: 'New password',
+    },
+    {
+      action: () => {navigate('/packs');},
+      title: 'Packs',
+    },
+    {
+      action: () => {navigate('/cards/:packId');},
+      title: 'Cards',
+    },
+  ];
+  const profileMenuData = [
+    {
+      title: 'Profile',
+      action: () => {navigate('profile');},
+    },
+    {
+      title: 'Logout',
+      action: () => {dispatch(logout());},
+    },
+
+  ];
 
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
   const { avatar, name } = useAppSelector(state => state.profile);
 
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-
-  const handleClose = (path: string) => {
-    navigate(path);
-    setAnchorEl(null);
-  };
-
   return (
     <div className={style.main}>
-      <div className={style.img} onClick={(event) => {setAnchorEl(event.currentTarget);}}>
-        <img src={incubatorLogo} alt="it-incubator" />
-      </div>
-      {isLoggedIn
-        ? <div className={style.profileInfo}>
-          <h5>{name}</h5>
-          <Avatar
-            onClick={() => {navigate('/profile');}}
-            className={style.avatar}
-            alt="Remy Sharp"
-            src={avatar} />
+      <PositionedMenu items={pathsMenuData}>
+        <div className={style.img}>
+          <img src={incubatorLogo} alt="it-incubator" />
         </div>
+      </PositionedMenu>
+      {isLoggedIn
+        ? <PositionedMenu items={profileMenuData}>
+          <div className={style.profileInfo}>
+            <h5>{name}</h5>
+            <Avatar
+              className={style.avatar}
+              alt="Remy Sharp"
+              src={avatar} />
+          </div>
+        </PositionedMenu>
         : <Button
           variant="contained"
-          onClick={() => navigate('/login')}>Sign in</Button>
-      }
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{ 'aria-labelledby': 'basic-button' }}>
-        {paths.map((el, index) => <MenuItem key={index} onClick={() => handleClose(el.path)}>{el.title}</MenuItem>)}
-      </Menu>
+          onClick={() => navigate('/login')}>Sign in</Button>}
     </div>
   );
 };

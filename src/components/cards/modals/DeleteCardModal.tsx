@@ -4,7 +4,9 @@ import { deleteCard } from '../bll-dal/cards-async-actions';
 import { BasicModal } from '../../../common/basicModal/BasicModal';
 
 export const DeleteCardModal: React.FC<DeleteCardPropsType> =
-  React.memo(({ cardId, cardQuestion, isOpenModal, setIsOpenModal }) => {
+  React.memo(({ cardId, cardQuestion, isOpenModal,
+    setIsOpenModal
+  }) => {
 
     const dispatch = useAppDispatch();
 

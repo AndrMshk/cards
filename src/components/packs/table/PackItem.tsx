@@ -11,11 +11,14 @@ import { UpdatePackModal } from '../modals/UpdatePackModal';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { PackType } from '../../../app/bll-dal/types';
 import style from '../packs.module.scss';
-import { useAppSelector } from '../../../app/bll-dal/store';
+import { useAppDispatch, useAppSelector } from '../../../app/bll-dal/store';
+import { setModalDataAction, toggleModalAction } from '../../../common/basicModal/bll/modal-reducer';
+import { DeletePackModal2 } from '../modals/DeletePackModal2';
 
 export const PackItem: React.FC<PackItemPropsType> = ({ pack, userId }) => {
 
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const [deletePackData, setDeletePackData] = useState<PackType | null>(null);
   const [updatePackData, setUpdatePackData] = useState<PackType | null>(null);
@@ -23,17 +26,23 @@ export const PackItem: React.FC<PackItemPropsType> = ({ pack, userId }) => {
   const [isOpenUpdatePackModal, setIsOpenUpdatePackModal] = useState(false);
 
   const isLoading = useAppSelector(state => state.app.isLoading);
+  const {modalData, isOpen} = useAppSelector(state => state.modals)
 
-  const openModalDeletePack = () => {
-    setIsOpenDeletePackModal(true);
-    setDeletePackData(pack);
+  // const openModalDeletePackHandler = () => {
+  //   setIsOpenDeletePackModal(true);
+  //   setDeletePackData(pack);
+  // };
+
+  const openModalDeletePackHandler = () => {
+    dispatch(toggleModalAction(true));
+    dispatch(setModalDataAction(pack));
   };
 
-  const openModalUpdatePack = () => {
-    setIsOpenUpdatePackModal(true);
+  const openModalUpdatePackHandler = () => {
     setUpdatePackData(pack);
+    setIsOpenUpdatePackModal(true);
   };
-
+  console.log(pack);
   return (
     <TableRow
       key={pack._id}>
@@ -47,19 +56,25 @@ export const PackItem: React.FC<PackItemPropsType> = ({ pack, userId }) => {
       <TableCell align="right" style={{ minWidth: '140px', maxWidth: '140px' }}>{formatDate(pack.updated)}</TableCell>
       <TableCell sx={{ textAlign: 'right' }} style={{ minWidth: '200px', maxWidth: '200px' }}>
         <Button
-          onClick={openModalDeletePack}
+          onClick={openModalDeletePackHandler}
           disabled={userId !== pack.user_id || isLoading}
           color="error"
           size="small"
           startIcon={<DeleteIcon />} />
-        {deletePackData && <DeletePackModal
-          packName={pack.name}
-          packId={deletePackData._id}
-          isOpenModal={isOpenDeletePackModal}
-          setIsOpenModal={setIsOpenDeletePackModal} />
+        {/*{deletePackData && <DeletePackModal*/}
+        {/*  packName={pack.name}*/}
+        {/*  packId={deletePackData._id}*/}
+        {/*  isOpenModal={isOpenDeletePackModal}*/}
+        {/*  setIsOpenModal={setIsOpenDeletePackModal}*/}
+          {modalData && <DeletePackModal2
+            packName={pack.name}
+            packId={modalData._id}
+            isOpenModal={isOpen}
+            setIsOpenModal={()=>{dispatch(toggleModalAction(true))}}
+          />
         }
         <Button
-          onClick={openModalUpdatePack}
+          onClick={openModalUpdatePackHandler}
           disabled={userId !== pack.user_id || isLoading}
           color="secondary" size="small"
           startIcon={<BorderColorIcon />} />

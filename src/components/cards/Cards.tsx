@@ -9,6 +9,7 @@ import { AddNewCardModal } from './modals/AddNewCardModal';
 import { BackButtonComponent } from '../../common/backButtonComponent/BackButtonComponent';
 import { setCards } from './bll-dal/cards-async-actions';
 import style from './cards.module.scss';
+import { PositionedMenu } from '../../common/optionMenu/OptionMenu';
 
 export const Cards = () => {
 
@@ -21,8 +22,24 @@ export const Cards = () => {
   const { packUserId, cards, page, pageCount, cardsTotalCount } = useAppSelector(state => state.cards);
   const userId = useAppSelector(state => state.profile._id);
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
+  const pack = useAppSelector(state => state.packs.cardPacks).find(el => el._id === packId);
 
   const questionDebounce = useDebounce(question, 1000);
+
+  const packMenuData = [
+    {
+      title: 'Learn',
+      action: () => {console.log('Learn');},
+    },
+    {
+      title: 'Edit',
+      action: () => {console.log('Edit');},
+    },
+    {
+      title: 'Delete',
+      action: () => {console.log('Delete');},
+    },
+  ];
 
   useEffect(() => {
     packId && dispatch(setCards(
@@ -54,7 +71,7 @@ export const Cards = () => {
           </div>
           : <div className={style.headerBlock}>
             <div className={style.title}>
-              <h2>{packName}</h2>
+              <div><PositionedMenu items={packMenuData}><h2>{packName}</h2></PositionedMenu></div>
               <Button
                 onClick={() => setIsOpenModalAddNewCard(true)}
                 variant="contained">Add new card</Button>
