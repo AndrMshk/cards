@@ -1,10 +1,10 @@
 import { AxiosResponse } from 'axios';
 import { instance } from '../../../app/bll-dal/app-api';
-import { UserType } from '../../../app/bll-dal/types';
+import { UpdateUserDataType, UserType } from '../../../app/bll-dal/types';
 
 export const profileApi = {
-  setNewUserName(name: string) {
-    return instance.put<{ name: string },
-      AxiosResponse<{ updatedUser: UserType, error?: string }>>('auth/me', { name });
+  updateUser(params: UpdateUserDataType) {
+    return instance.put<{ params: UpdateUserDataType },
+      AxiosResponse<{ updatedUser: UserType, error?: string }>>('auth/me', { ...params });
   },
 };

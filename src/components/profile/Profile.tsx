@@ -17,7 +17,7 @@ export const Profile = () => {
   const dispatch = useAppDispatch();
   const [editMode, setEditMode] = useState(false);
 
-  const { name, email, avatar } = useAppSelector(state => state.profile);
+  const { name, email } = useAppSelector(state => state.profile);
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
 
   const formik = useFormik({
@@ -53,7 +53,7 @@ export const Profile = () => {
       <BackButtonComponent title="To pack list" path="/packs" />
       <Paper className={style.content} elevation={4}>
         <h2>Personal Information</h2>
-        <AvatarComponent avatar={avatar} />
+        <AvatarComponent/>
         {editMode
           ? <EditNameForm
             name={name}

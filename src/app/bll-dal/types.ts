@@ -167,3 +167,8 @@ export type UserType = {
   verified?: boolean
   rememberMe?: boolean
 }
+
+export type UpdateUserDataType = {
+  name?: string
+  avatar?: string
+}
