@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAppDispatch } from '../../../app/bll-dal/store';
 import { TextField } from '@mui/material';
 import { updatePack } from '../bll-dal/packs-async-actions';
@@ -9,7 +9,7 @@ export const UpdatePackModal: React.FC<UpdatePackType> =
 
     const dispatch = useAppDispatch();
 
-    const [newPackName, setNewPackName] = React.useState(packName);
+    const [newPackName, setNewPackName] = useState(packName);
 
     const updatePackHandler = () => {
       packId && dispatch(updatePack(packId, newPackName));
@@ -29,9 +29,7 @@ export const UpdatePackModal: React.FC<UpdatePackType> =
           variant="standard"
           color="primary"
           value={newPackName}
-          onChange={e => setNewPackName(e.currentTarget.value)}
-          onKeyDown={(e) => {console.log(e);}}
-        />
+          onChange={(e) => setNewPackName(e.currentTarget.value)} />
         <div style={{ wordWrap: 'break-word', marginTop: '10px' }}>Do you really want to change <b>{packName}</b>?</div>
       </BasicModal>
     );

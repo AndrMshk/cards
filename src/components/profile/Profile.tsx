@@ -50,7 +50,7 @@ export const Profile = () => {
 
   return (
     <div className={style.main}>
-      <BackButtonComponent title={'Back To Packs List'} path={'/packs'} />
+      <BackButtonComponent title="To pack list" path="/packs" />
       <Paper className={style.content} elevation={4}>
         <h2>Personal Information</h2>
         <AvatarComponent avatar={avatar} />

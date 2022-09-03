@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/bll-dal/store';
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { CardsTable } from './table/CardsTable';
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
@@ -10,14 +10,19 @@ import { BackButtonComponent } from '../../common/backButtonComponent/BackButton
 import { setCards } from './bll-dal/cards-async-actions';
 import style from './cards.module.scss';
 import { PositionedMenu } from '../../common/optionMenu/OptionMenu';
+import { DeletePackModal } from '../packs/modals/DeletePackModal';
+import { UpdatePackModal } from '../packs/modals/UpdatePackModal';
 
 export const Cards = () => {
 
   const dispatch = useAppDispatch();
   const { packId, packName } = useParams();
+  const navigate = useNavigate();
 
   const [question, setQuestion] = useState<string>('');
   const [isOpenModalAddNewCard, setIsOpenModalAddNewCard] = useState(false);
+  const [isOpenDeletePackModal, setIsOpenDeletePackModal] = useState(false);
+  const [isOpenUpdatePackModal, setIsOpenUpdatePackModal] = useState(false);
 
   const { packUserId, cards, page, pageCount, cardsTotalCount } = useAppSelector(state => state.cards);
   const userId = useAppSelector(state => state.profile._id);
@@ -29,15 +34,15 @@ export const Cards = () => {
   const packMenuData = [
     {
       title: 'Learn',
-      action: () => {console.log('Learn');},
+      action: () => {pack && pack.cardsCount && navigate(`/learn/${pack._id}/${pack.name}`);}
     },
     {
       title: 'Edit',
-      action: () => {console.log('Edit');},
+      action: () => {setIsOpenUpdatePackModal(true);},
     },
     {
       title: 'Delete',
-      action: () => {console.log('Delete');},
+      action: () => {setIsOpenDeletePackModal(true);},
     },
   ];
 
@@ -49,12 +54,22 @@ export const Cards = () => {
         pageCount,
         cardQuestion: !!question ? question : undefined,
       }));
-  }, [packId, page, pageCount, questionDebounce]);
+  }, [packId, page, pageCount, questionDebounce, pack]);
 
   if (!isLoggedIn) {return <Navigate to={'/login'} />;}
 
   return (
     <div className={style.main}>
+      <DeletePackModal
+        packName={pack && pack.name}
+        packId={packId}
+        setIsOpenModal={setIsOpenDeletePackModal}
+        isOpenModal={isOpenDeletePackModal} />
+      <UpdatePackModal
+        packName={pack && pack.name}
+        packId={packId}
+        setIsOpenModal={setIsOpenUpdatePackModal}
+        isOpenModal={isOpenUpdatePackModal} />
       <BackButtonComponent />
       <div className={style.content}>
         {userId !== packUserId

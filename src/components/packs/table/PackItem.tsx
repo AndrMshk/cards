@@ -11,14 +11,11 @@ import { UpdatePackModal } from '../modals/UpdatePackModal';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { PackType } from '../../../app/bll-dal/types';
 import style from '../packs.module.scss';
-import { useAppDispatch, useAppSelector } from '../../../app/bll-dal/store';
-import { setModalDataAction, toggleModalAction } from '../../../common/basicModal/bll/modal-reducer';
-import { DeletePackModal2 } from '../modals/DeletePackModal2';
+import { useAppSelector } from '../../../app/bll-dal/store';
 
 export const PackItem: React.FC<PackItemPropsType> = ({ pack, userId }) => {
 
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   const [deletePackData, setDeletePackData] = useState<PackType | null>(null);
   const [updatePackData, setUpdatePackData] = useState<PackType | null>(null);
@@ -26,23 +23,17 @@ export const PackItem: React.FC<PackItemPropsType> = ({ pack, userId }) => {
   const [isOpenUpdatePackModal, setIsOpenUpdatePackModal] = useState(false);
 
   const isLoading = useAppSelector(state => state.app.isLoading);
-  const {modalData, isOpen} = useAppSelector(state => state.modals)
-
-  // const openModalDeletePackHandler = () => {
-  //   setIsOpenDeletePackModal(true);
-  //   setDeletePackData(pack);
-  // };
 
   const openModalDeletePackHandler = () => {
-    dispatch(toggleModalAction(true));
-    dispatch(setModalDataAction(pack));
+    setIsOpenDeletePackModal(true);
+    setDeletePackData(pack);
   };
 
   const openModalUpdatePackHandler = () => {
-    setUpdatePackData(pack);
     setIsOpenUpdatePackModal(true);
+    setUpdatePackData(pack);
   };
-  console.log(pack);
+
   return (
     <TableRow
       key={pack._id}>
@@ -58,21 +49,13 @@ export const PackItem: React.FC<PackItemPropsType> = ({ pack, userId }) => {
         <Button
           onClick={openModalDeletePackHandler}
           disabled={userId !== pack.user_id || isLoading}
-          color="error"
-          size="small"
+          color="error" size="small"
           startIcon={<DeleteIcon />} />
-        {/*{deletePackData && <DeletePackModal*/}
-        {/*  packName={pack.name}*/}
-        {/*  packId={deletePackData._id}*/}
-        {/*  isOpenModal={isOpenDeletePackModal}*/}
-        {/*  setIsOpenModal={setIsOpenDeletePackModal}*/}
-          {modalData && <DeletePackModal2
-            packName={pack.name}
-            packId={modalData._id}
-            isOpenModal={isOpen}
-            setIsOpenModal={()=>{dispatch(toggleModalAction(true))}}
-          />
-        }
+        {deletePackData && <DeletePackModal
+          packName={deletePackData.name}
+          packId={deletePackData._id}
+          isOpenModal={isOpenDeletePackModal}
+          setIsOpenModal={setIsOpenDeletePackModal} />}
         <Button
           onClick={openModalUpdatePackHandler}
           disabled={userId !== pack.user_id || isLoading}

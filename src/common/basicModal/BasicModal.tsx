@@ -30,6 +30,7 @@ export const BasicModal: React.FC<ModalPropsType> = React.memo(
       p: 4,
     };
 
+
     const handleClose = () => {
       setIsOpenModal(false);
       handleCloseOperation && handleCloseOperation();
