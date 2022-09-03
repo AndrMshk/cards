@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { TextField } from '@mui/material';
 import { useAppDispatch } from '../../../app/bll-dal/store';
 import { useParams } from 'react-router-dom';
@@ -14,6 +14,11 @@ export const AddNewCardModal: React.FC<AddNewCardPropsType> =
 
     const [newCardQuestion, setNewCardQuestion] = React.useState('');
     const [newCardAnswer, setNewCardAnswer] = React.useState('');
+
+    useEffect(() => {
+      setNewCardAnswer('');
+      setNewCardQuestion('');
+    }, [isOpenModal]);
 
     const addNewCard = () => {
       packId && dispatch(createCard(

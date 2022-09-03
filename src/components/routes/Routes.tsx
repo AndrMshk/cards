@@ -7,6 +7,7 @@ import { NewPassword } from '../auth/newPassword/NewPassword';
 import { Profile } from '../profile/Profile';
 import { Packs } from '../packs/Packs';
 import { Cards } from '../cards/Cards';
+import { Learn } from '../learn/Learn';
 
 export const ProjectRoutes = () => {
   return <div>
@@ -20,7 +21,7 @@ export const ProjectRoutes = () => {
       <Route path={'/registration'} element={<Registration />} />
       <Route path={'/packs'} element={<Packs />} />
       <Route path={'/cards/:packId/:packName'} element={<Cards />} />
-      <Route path={'/learn/:packId/:packName'} element={<div></div>} />
+      <Route path={'/learn/:packId/:packName'} element={<Learn/>} />
       <Route path={'/404'} element={<div>ERROR</div>} />
       <Route path={'*'} element={<Navigate to={'/404'} />} />
     </Routes>

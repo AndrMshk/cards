@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TextField } from '@mui/material';
 import { useAppDispatch } from '../../../app/bll-dal/store';
 import { BasicModal } from '../../../common/basicModal/BasicModal';
@@ -10,6 +10,8 @@ export const AddNewPackModal: React.FC<AddNewPackPropsType> =
     const dispatch = useAppDispatch();
 
     const [newPackName, setNewPackName] = useState('');
+
+    useEffect(()=>{setNewPackName('')}, [isOpenModal])
 
     const addNewPack = () => {
       dispatch(createPack(newPackName));
@@ -24,6 +26,7 @@ export const AddNewPackModal: React.FC<AddNewPackPropsType> =
         buttonName="Save"
         handleOperation={addNewPack}>
         <TextField
+          style={{width: '100%'}}
           label="Pack name"
           variant="standard"
           color="primary"

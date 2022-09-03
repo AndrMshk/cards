@@ -24,11 +24,14 @@ export const UpdatePackModal: React.FC<UpdatePackType> =
         buttonName="Save"
         handleOperation={updatePackHandler}>
         <TextField
+          style={{ width: '100%' }}
           label="Title"
           variant="standard"
           color="primary"
           value={newPackName}
-          onChange={e => setNewPackName(e.currentTarget.value)} />
+          onChange={e => setNewPackName(e.currentTarget.value)}
+          onKeyDown={(e) => {console.log(e);}}
+        />
         <div style={{ wordWrap: 'break-word', marginTop: '10px' }}>Do you really want to change <b>{packName}</b>?</div>
       </BasicModal>
     );

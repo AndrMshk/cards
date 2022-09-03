@@ -44,7 +44,7 @@ export const CardsTable: React.FC<CardsTablePropsType> = ({ cards, userId, pageC
           ? <Table aria-label="simple table">
             <TableHead>
               <TableRow>
-                {tableHeaderTitles.map(el => <TableCell align="center">{el}</TableCell>)}
+                {tableHeaderTitles.map((el, index) => <TableCell key={index} align="center">{el}</TableCell>)}
               </TableRow>
             </TableHead>
             <TableBody>
