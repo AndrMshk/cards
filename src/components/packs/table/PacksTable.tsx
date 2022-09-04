@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -6,13 +6,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { useAppDispatch } from '../../../app/bll-dal/store';
+import { useAppDispatch, useAppSelector } from '../../../app/bll-dal/store';
 import TablePagination from '@mui/material/TablePagination';
 import { PackItem } from './PackItem';
 import { SortTableCell } from './SortTableSell';
 import { setCurrentPageAction, setCurrentPageCountAction } from '../bll-dal/packs-reducer';
-import { deletePack, updatePack } from '../bll-dal/packs-async-actions';
-import { PackType } from '../../../app/bll-dal/types';
+import { deletePack, setPacks, updatePack } from '../bll-dal/packs-async-actions';
 import style from '../packs.module.scss';
 
 export const formatDate = (date: Date | string | number) => {
@@ -46,12 +45,41 @@ const tableHeaderTitles = [
   },
 ];
 
-export const PacksTable: React.FC<PacksTablePropsType> = ({ packs, userId, pageCount, rowsPerPage }) => {
+export const PacksTable = () => {
 
   const dispatch = useAppDispatch();
 
-  const [page, setPage] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState<number>(0);
   const [headersForSort, setHeadersForSort] = useState(tableHeaderTitles);
+
+  const { cardPacks, page, cardPacksTotalCount, pageCount } = useAppSelector(state => state.packs);
+  const { sortOrder, filterByCardsCount, packName, isOwn } = useAppSelector(state => state.packs.filterValues);
+  const userId = useAppSelector(state => state.profile._id);
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
+
+  console.log(sortOrder);
+
+  useEffect(() => {
+    isLoggedIn && dispatch(setPacks(
+      {
+        page,
+        pageCount,
+        min: filterByCardsCount.min,
+        max: filterByCardsCount.max,
+        user_id: isOwn ? userId : undefined,
+        packName: packName || undefined,
+        sortPacks: sortOrder || undefined,
+      }));
+  }, [
+    page,
+    pageCount,
+    isOwn,
+    filterByCardsCount,
+    sortOrder,
+    packName,
+  ]);
+
+  useEffect(() => {setHeadersForSort(headersForSort.map(el => ({ ...el, sort: 'none' })));}, [sortOrder]);
 
   const showIsAvailableToSortHandler = (title: string, is: boolean) => {
     setHeadersForSort(headersForSort.map(
@@ -64,7 +92,7 @@ export const PacksTable: React.FC<PacksTablePropsType> = ({ packs, userId, pageC
   };
 
   const changePageHandler = (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
-    setPage(newPage);
+    setCurrentPage(newPage);
     dispatch(setCurrentPageAction(newPage + 1));
   };
 
@@ -78,7 +106,7 @@ export const PacksTable: React.FC<PacksTablePropsType> = ({ packs, userId, pageC
   return (
     <div className={style.packsTable}>
       <TableContainer component={Paper}>
-        {packs.length
+        {cardPacks.length
           ? <Table aria-label="simple table">
             <TableHead className={style.tableHeader}>
               <TableRow>
@@ -92,7 +120,7 @@ export const PacksTable: React.FC<PacksTablePropsType> = ({ packs, userId, pageC
               </TableRow>
             </TableHead>
             <TableBody>
-              {packs.map(pack => (
+              {cardPacks.map(pack => (
                 <PackItem
                   key={pack._id}
                   pack={pack}
@@ -105,21 +133,13 @@ export const PacksTable: React.FC<PacksTablePropsType> = ({ packs, userId, pageC
       </TableContainer>
       <TablePagination
         component="div"
-        count={pageCount}
-        page={page}
+        count={cardPacksTotalCount}
+        page={currentPage}
         onPageChange={changePageHandler}
-        rowsPerPage={rowsPerPage}
+        rowsPerPage={pageCount}
         onRowsPerPageChange={changeRowsPerPageHandler}
         rowsPerPageOptions={[5, 10, 15, 20]} />
     </div>
   );
 };
-
-type PacksTablePropsType = {
-  packs: PackType[]
-  userId: string
-  rowsPerPage: number
-  pageCount: number
-}
-
 

@@ -36,10 +36,19 @@
 			h5 {
 				margin: 0;
 			}
-			.search {
-				width: 413px;
-				height: 36px;
-				margin-bottom: 20px;
+			.reset {
+				margin-right: 5px;
+				width: 62px;
+				height: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				svg {
+					width: 70%;
+					height: 70%;
+					cursor: pointer;
+					color: #1976d2;
+				}
 			}
 			.isOnwToggle {
 				width: 196px;
@@ -67,7 +76,7 @@
 		.packsTable {
 			width: 100%;
 			th {
-				background-color: #EFEFEF;
+				background-color: #efefef;
 				font-weight: bold;
 			}
 			tr {
@@ -77,11 +86,9 @@
 				word-wrap: break-word;
 				max-width: 200px;
 				min-width: 200px;
-				a {
-					text-decoration: none;
-					color: black;
-					font-weight: bold;
-				}
+				font-weight: bold;
+				cursor: pointer;
+
 			}
 			.sortTableCell {
 				height: 100%;

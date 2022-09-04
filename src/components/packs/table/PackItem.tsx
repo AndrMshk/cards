@@ -11,11 +11,13 @@ import { UpdatePackModal } from '../modals/UpdatePackModal';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { PackType } from '../../../app/bll-dal/types';
 import style from '../packs.module.scss';
-import { useAppSelector } from '../../../app/bll-dal/store';
+import { useAppDispatch, useAppSelector } from '../../../app/bll-dal/store';
+import { setCurrentPackAction } from '../bll-dal/packs-reducer';
 
 export const PackItem: React.FC<PackItemPropsType> = ({ pack, userId }) => {
 
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const [deletePackData, setDeletePackData] = useState<PackType | null>(null);
   const [updatePackData, setUpdatePackData] = useState<PackType | null>(null);
@@ -38,7 +40,11 @@ export const PackItem: React.FC<PackItemPropsType> = ({ pack, userId }) => {
     <TableRow
       key={pack._id}>
       <TableCell scope="row" align="left" className={style.packName}>
-        <NavLink to={`/cards/${pack._id}/${pack.name}`}>{pack.name}</NavLink>
+        <span onClick={()=>{
+          navigate(`/cards/${pack._id}/${pack.name}`)
+          dispatch(setCurrentPackAction(pack))
+        }}>{pack.name}</span>
+        {/*<NavLink to={`/cards/${pack._id}/${pack.name}`}>{pack.name}</NavLink>*/}
       </TableCell>
       <TableCell align="right" style={{ minWidth: '110px', maxWidth: '110px' }}>{pack.cardsCount}</TableCell>
       <TableCell

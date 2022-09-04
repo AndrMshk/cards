@@ -27,14 +27,16 @@ export const Cards = () => {
   const { packUserId, cards, page, pageCount, cardsTotalCount } = useAppSelector(state => state.cards);
   const userId = useAppSelector(state => state.profile._id);
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
-  const pack = useAppSelector(state => state.packs.cardPacks).find(el => el._id === packId);
+  const pack = useAppSelector(state => state.packs.currentCardPack);
+
+  console.log(pack);
 
   const questionDebounce = useDebounce(question, 1000);
 
   const packMenuData = [
     {
       title: 'Learn',
-      action: () => {pack && pack.cardsCount && navigate(`/learn/${pack._id}/${pack.name}`);}
+      action: () => {pack && pack.cardsCount && navigate(`/learn/${pack._id}/${pack.name}`);},
     },
     {
       title: 'Edit',
@@ -66,7 +68,7 @@ export const Cards = () => {
         setIsOpenModal={setIsOpenDeletePackModal}
         isOpenModal={isOpenDeletePackModal} />
       <UpdatePackModal
-        packName={pack && pack.name}
+        packName={packName}
         packId={packId}
         setIsOpenModal={setIsOpenUpdatePackModal}
         isOpenModal={isOpenUpdatePackModal} />

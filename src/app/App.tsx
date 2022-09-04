@@ -26,7 +26,7 @@ function App() {
   return (
     <div className={style.main}>
       <Header />
-      {isLoading && <div className={style.linearProgress}><LinearProgress /></div>}
+
       <ProjectRoutes />
       <ErrorSnackbar />
     </div>

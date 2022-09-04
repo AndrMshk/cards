@@ -1,16 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { useAppDispatch, useAppSelector } from '../../../app/bll-dal/store';
 import { sortPacksByCardsCountAction } from '../bll-dal/packs-reducer';
 
-function valuetext(value: number) {
-  return `${value}`;
+type x = {
+  tempValues: any, setTempValues: any
 }
 
-const minDistance = 10;
-
-export const SliderFilter: React.FC = () => {
+export const SliderFilter = ({setTempValues, tempValues}:x) => {
 
   const dispatch = useAppDispatch();
 
@@ -18,43 +16,45 @@ export const SliderFilter: React.FC = () => {
   const minCardsCount = useAppSelector(state => state.packs.minCardsCount);
   const maxCardsCount = useAppSelector(state => state.packs.maxCardsCount);
 
+
+
+  useEffect(() => {
+    setTempValues({ min: minCardsCount, max: maxCardsCount });
+    // @ts-ignore
+    if (filterByCardsCount.min < tempValues.max || filterByCardsCount.max > tempValues.min) {
+      dispatch(sortPacksByCardsCountAction({ min: undefined, max: undefined }));
+    }
+  }, [minCardsCount, maxCardsCount]);
+
+  useEffect(() => {
+
+  }, []);
+
   const handleChange = (event: Event, newValue: number | number[], activeThumb: number) => {
     if (!Array.isArray(newValue)) {
       return;
     }
-
     if (activeThumb === 0) {
-      dispatch(sortPacksByCardsCountAction(
-        {
-          min: Math.min(newValue[0], filterByCardsCount.max || maxCardsCount - minDistance),
-          max: filterByCardsCount.max,
-        }));
+      setTempValues({ ...tempValues, min: Math.min(newValue[0], filterByCardsCount.max || maxCardsCount) });
     } else {
-      dispatch(sortPacksByCardsCountAction(
-        {
-          min: filterByCardsCount.min,
-          max: Math.max(newValue[1], filterByCardsCount.min || minCardsCount + minDistance),
-        }));
+      setTempValues({ ...tempValues, max: Math.max(newValue[1], filterByCardsCount.min || minCardsCount) });
     }
   };
 
   return (
     <Box sx={{ width: 300, display: 'flex', justifyContent: 'space-around' }}>
-      <div style={{ width: '30px', textAlign: 'center' }}>{filterByCardsCount.min || 0}</div>
+      <div style={{ width: '30px', textAlign: 'center' }}>{tempValues.min}</div>
       <Slider
         style={{ width: '60%' }}
         getAriaLabel={() => 'Minimum distance'}
-        value={[filterByCardsCount.min || minCardsCount, filterByCardsCount.max || maxCardsCount]}
+        value={[tempValues.max, tempValues.min]}
         onChange={handleChange}
+        onChangeCommitted={() => {dispatch(sortPacksByCardsCountAction(tempValues));}}
         valueLabelDisplay="auto"
-        getAriaValueText={valuetext}
         disableSwap
-        max={110}
-        min={0}
-      />
-      <div style={{ width: '30px', textAlign: 'center' }}>{filterByCardsCount.max || 110}</div>
+        max={maxCardsCount}
+        min={minCardsCount} />
+      <div style={{ width: '30px', textAlign: 'center' }}>{tempValues.max}</div>
     </Box>
   );
 };
-
-

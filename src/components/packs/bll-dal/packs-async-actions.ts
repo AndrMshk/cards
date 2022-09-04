@@ -7,6 +7,7 @@ import {
   deletePackAction,
   setCurrentPageAction,
   setCurrentPageCountAction,
+  setMinMaxCardsCountAction,
   setPacksAction, updatePackAction,
 } from './packs-reducer';
 
@@ -16,6 +17,7 @@ export const setPacks = (params: ParamsGetPackRequestType): ThunkType => async(d
     const res = await packsApi.setPacks(params);
     dispatch(setCurrentPageAction(params.page || 1));
     dispatch(setCurrentPageCountAction(params.pageCount || 10));
+    dispatch(setMinMaxCardsCountAction(res.data.minCardsCount, res.data.maxCardsCount))
     dispatch(setPacksAction(res.data.cardPacks, res.data.cardPacksTotalCount));
   } catch (error) {
     if (axios.isAxiosError(error)) {
