@@ -1,5 +1,6 @@
 import { Button, FormControl, Input, InputAdornment } from '@mui/material';
 import * as React from 'react';
+import style from '../profile.module.scss';
 
 export const EditNameForm: React.FC<EditNameFormPropsType> = (
   { handleSubmit, handleChange, name, setEditMode, newName, error },
@@ -13,8 +14,8 @@ export const EditNameForm: React.FC<EditNameFormPropsType> = (
   };
 
   return (
-    <FormControl>
-      <form onSubmit={handleSubmit} style={{ height: '75px' }}>
+    <FormControl style={{height: '75px', paddingTop: '16px'}}>
+      <form onSubmit={handleSubmit} className={style.editForm}>
         <Input
           autoFocus
           autoComplete={'off'}
