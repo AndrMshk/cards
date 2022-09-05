@@ -77,7 +77,7 @@ export const Cards = () => {
             <div
               className={style.title}
               onClick={() => {!!cardsTotalCount && navigate(`/learn/${packId}`);}}
-            ><h2>{packName}</h2></div>
+            ><h2 style={{maxWidth: '100%'}}>{packName}</h2></div>
             <TextField
               className={style.search}
               id="search"

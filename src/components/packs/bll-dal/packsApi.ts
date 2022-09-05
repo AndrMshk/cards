@@ -8,9 +8,9 @@ export const packsApi = {
             params: {...params},
         });
     },
-    createPack(newPackName: string | undefined) {
+    createPack(newPackName: string | undefined, deckCover: string | undefined) {
         return instance.post<{ cardsPack: { name?: string, deckCover?: string, private?: boolean } }, AxiosResponse<any>>
-        ('cards/pack', {cardsPack: {name: newPackName}});
+        ('cards/pack', {cardsPack: {name: newPackName, deckCover: deckCover}});
     },
     deletePack(packId: string) {
         return instance.delete<AxiosResponse<any>>(`cards/pack/?id=${packId}`);

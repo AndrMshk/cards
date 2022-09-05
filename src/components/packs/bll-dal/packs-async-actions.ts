@@ -30,10 +30,10 @@ export const setPacks = (params: ParamsGetPackRequestType): ThunkType => async(d
   }
 };
 
-export const createPack = (newPackName: string): ThunkType => async dispatch => {
+export const createPack = (newPackName?: string, cover?: string): ThunkType => async dispatch => {
   try {
     dispatch(setAppIsLoadingAction(true));
-    const res = await packsApi.createPack(newPackName);
+    const res = await packsApi.createPack(newPackName, cover);
     dispatch(createPackAction(res.data.newCardsPack));
   } catch (error) {
     if (axios.isAxiosError(error)) {

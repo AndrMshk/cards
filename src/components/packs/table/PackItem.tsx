@@ -23,6 +23,7 @@ export const PackItem: React.FC<PackItemPropsType> = ({ pack, userId }) => {
   const [updatePackData, setUpdatePackData] = useState<PackType | null>(null);
   const [isOpenDeletePackModal, setIsOpenDeletePackModal] = useState(false);
   const [isOpenUpdatePackModal, setIsOpenUpdatePackModal] = useState(false);
+  const [isValidCover, setIsValidCover] = useState(true);
 
   const isLoading = useAppSelector(state => state.app.isLoading);
 
@@ -40,13 +41,20 @@ export const PackItem: React.FC<PackItemPropsType> = ({ pack, userId }) => {
     <TableRow
       key={pack._id}>
       <TableCell scope="row" align="left" className={style.packName}>
-        <span onClick={() => {
+        <div onClick={() => {
           navigate(`/cards/${pack._id}`);
           dispatch(setCurrentPackAction(pack));
-        }}>{pack.deckCover
-          ? <div style={{ width: '100%', textAlign: 'center' }}><img src={pack.deckCover} alt="deckCover" /></div>
+        }}>{pack.deckCover && isValidCover
+          ? <div
+            className={style.cover}>
+            <img
+              onError={()=>{setIsValidCover(false)}}
+              src={pack.deckCover}
+              alt="deckCover" />
+            <div className={style.title} >{pack.name}</div>
+          </div>
           : pack.name}
-        </span>
+        </div>
       </TableCell>
       <TableCell align="right" style={{ minWidth: '80px', maxWidth: '80px' }}>{pack.cardsCount}</TableCell>
       <TableCell
