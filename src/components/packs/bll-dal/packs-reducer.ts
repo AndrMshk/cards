@@ -62,6 +62,11 @@ export const packsReducer = (state: InitialStateType = initialState, action: Pac
         ...state, page: 1, pageCount: 5, filterValues:
           { sortOrder: undefined, isOwn: false, packName: '', filterByCardsCount: { max: undefined, min: undefined } },
       };
+    case 'packs/UPDATE-PACK-NAME':
+      return {
+        ...state,
+        cardPacks: state.cardPacks.map(el => el._id === action.packId ? { ...el, name: action.newName } : el),
+      };
     default:
       return state;
   }
@@ -94,8 +99,11 @@ export const setMinMaxCardsCountAction = (minCardsCount: number, maxCardsCount: 
   type: 'packs/SET-MIN-MAX-CARDS-COUNT', minCardsCount, maxCardsCount,
 } as const);
 export const resetAllFiltersAction = () => ({ type: 'packs/RESET-FILTERS' } as const);
+export const updatePackNameAction = (packId: string, newName: string) =>
+  ({ type: 'packs/UPDATE-PACK-NAME', packId, newName } as const);
 
 type InitialStateType = typeof initialState
+export type updatePackNameActionType = ReturnType<typeof updatePackNameAction>
 type PacksActionType =
   | ReturnType<typeof setPacksAction>
   | ReturnType<typeof createPackAction>
@@ -110,6 +118,7 @@ type PacksActionType =
   | ReturnType<typeof setCurrentPackAction>
   | ReturnType<typeof setMinMaxCardsCountAction>
   | ReturnType<typeof resetAllFiltersAction>
+  | updatePackNameActionType
 
 
 

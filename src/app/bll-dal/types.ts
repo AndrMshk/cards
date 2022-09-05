@@ -22,7 +22,7 @@ export type PackType = {
   updated: Date
   more_id?: string
   __v: number
-  deckCover?: any
+  deckCover?: string
 };
 
 export type CardType = {
@@ -75,6 +75,23 @@ export type ParamsGetCardsRequestType = {
   sortCards?: string
   page?: number
   pageCount?: number
+}
+
+export type GetCardsResponseType = {
+  cards: CardType[]
+  cardsTotalCount: number
+  maxGrade: number
+  minGrade: number
+  packCreated: Date
+  packDeckCover: string | null
+  packName: string
+  packPrivate: false
+  packUpdated: Date
+  packUserId: string
+  page: number
+  pageCount: number
+  token: string
+  tokenDeathTime: number
 }
 
 export type UpdatedGradeResponseType = {
@@ -172,3 +189,5 @@ export type UpdateUserDataType = {
   name?: string
   avatar?: string
 }
+
+

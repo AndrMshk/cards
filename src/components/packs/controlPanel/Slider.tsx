@@ -15,6 +15,7 @@ export const SliderFilter = ({setTempValues, tempValues}:x) => {
   const filterByCardsCount = useAppSelector(state => state.packs.filterValues.filterByCardsCount);
   const minCardsCount = useAppSelector(state => state.packs.minCardsCount);
   const maxCardsCount = useAppSelector(state => state.packs.maxCardsCount);
+  const isLoading = useAppSelector(state => state.app.isLoading);
 
 
 
@@ -45,6 +46,7 @@ export const SliderFilter = ({setTempValues, tempValues}:x) => {
     <Box sx={{ width: 300, display: 'flex', justifyContent: 'space-around' }}>
       <div style={{ width: '30px', textAlign: 'center' }}>{tempValues.min}</div>
       <Slider
+        disabled={isLoading}
         style={{ width: '60%' }}
         getAriaLabel={() => 'Minimum distance'}
         value={[tempValues.max, tempValues.min]}

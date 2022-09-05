@@ -27,13 +27,13 @@ export const ControlPanel = () => {
         <h5>Show packs cards</h5>
         <ButtonGroup disableElevation className={style.buttonGroup} disabled={isLoading}>
           <Button
-            onClick={() => toggleOwnAllPackHandler(false)}
-            variant={!isOwn ? 'contained' : 'text'}
-          >All</Button>
-          <Button
             onClick={() => toggleOwnAllPackHandler(true)}
             variant={isOwn ? 'contained' : 'text'}
           >My</Button>
+          <Button
+            onClick={() => toggleOwnAllPackHandler(false)}
+            variant={!isOwn ? 'contained' : 'text'}
+          >All</Button>
         </ButtonGroup>
       </div>
       <div className={style.cardsCount}>
@@ -41,6 +41,7 @@ export const ControlPanel = () => {
         <SliderFilter tempValues={tempValues} setTempValues={setTempValues} />
       </div>
       <div className={style.reset}>
+        <h5>Reset</h5>
         <HighlightOffIcon
           onClick={() => {
             setSearchName('');

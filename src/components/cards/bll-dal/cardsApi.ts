@@ -1,10 +1,15 @@
 import { AxiosResponse } from 'axios';
 import { instance } from '../../../app/bll-dal/app-api';
-import { CardType, ParamsGetCardsRequestType, UpdatedGradeResponseType } from '../../../app/bll-dal/types';
+import {
+  CardType,
+  GetCardsResponseType,
+  ParamsGetCardsRequestType,
+  UpdatedGradeResponseType,
+} from '../../../app/bll-dal/types';
 
 export const cardsApi = {
   setCards(params: ParamsGetCardsRequestType) {
-    return instance.get<ParamsGetCardsRequestType, AxiosResponse<any>>(`cards/card`, { params: { ...params } });
+    return instance.get<ParamsGetCardsRequestType, AxiosResponse<GetCardsResponseType>>(`cards/card`, { params: { ...params } });
   },
   createCard(newCard: CardType) {
     return instance.post<CardType, AxiosResponse<any>>(`cards/card`, { card: { ...newCard } });

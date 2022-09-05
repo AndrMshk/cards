@@ -23,10 +23,10 @@ export const SortTableCell: React.FC<SortTableCellPropsType> = ({ el, showIsAvai
   };
 
   return (
-    <TableCell className={style.sortTableCell} align="center">
+    <TableCell className={style.sortTableCell} align="center"
+               onMouseEnter={() => showIsAvailableToSort(el.title, true)}
+               onMouseLeave={() => showIsAvailableToSort(el.title, false)}>
       <div className={style.title}
-           onMouseEnter={() => showIsAvailableToSort(el.title, true)}
-           onMouseLeave={() => showIsAvailableToSort(el.title, false)}
       >{el.title}
         <span style={{ display: 'inline-block', width: '20px' }}>
         {el.isAvailableToSort && el.sort === 'none' && <SortIcon onClick={() => {filterHandler('down');}} />}

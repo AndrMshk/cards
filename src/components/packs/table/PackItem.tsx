@@ -1,6 +1,6 @@
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
@@ -40,13 +40,15 @@ export const PackItem: React.FC<PackItemPropsType> = ({ pack, userId }) => {
     <TableRow
       key={pack._id}>
       <TableCell scope="row" align="left" className={style.packName}>
-        <span onClick={()=>{
-          navigate(`/cards/${pack._id}/${pack.name}`)
-          dispatch(setCurrentPackAction(pack))
-        }}>{pack.name}</span>
-        {/*<NavLink to={`/cards/${pack._id}/${pack.name}`}>{pack.name}</NavLink>*/}
+        <span onClick={() => {
+          navigate(`/cards/${pack._id}`);
+          dispatch(setCurrentPackAction(pack));
+        }}>{pack.deckCover
+          ? <div style={{ width: '100%', textAlign: 'center' }}><img src={pack.deckCover} alt="deckCover" /></div>
+          : pack.name}
+        </span>
       </TableCell>
-      <TableCell align="right" style={{ minWidth: '110px', maxWidth: '110px' }}>{pack.cardsCount}</TableCell>
+      <TableCell align="right" style={{ minWidth: '80px', maxWidth: '80px' }}>{pack.cardsCount}</TableCell>
       <TableCell
         align="right"
         style={{ wordWrap: 'break-word', minWidth: '198px', maxWidth: '198px' }}>{pack.user_name}</TableCell>

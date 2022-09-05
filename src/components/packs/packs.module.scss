@@ -33,19 +33,25 @@
 			gap: 24px;
 			margin-top: 42px;
 			margin-bottom: 24px;
+			.search {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: center;
+			}
 			h5 {
 				margin: 0;
 			}
 			.reset {
-				margin-right: 5px;
 				width: 62px;
 				height: 100%;
 				display: flex;
-				justify-content: center;
+				flex-direction: column;
+				justify-content: space-between;
 				align-items: center;
 				svg {
-					width: 70%;
-					height: 70%;
+					width: 60%;
+					height: 60%;
 					cursor: pointer;
 					color: #1976d2;
 				}
@@ -84,11 +90,14 @@
 			}
 			.packName {
 				word-wrap: break-word;
-				max-width: 200px;
-				min-width: 200px;
+				max-width: 230px;
+				min-width: 230px;
 				font-weight: bold;
 				cursor: pointer;
-
+				img {
+					max-height: 50px;
+					max-width: 80px;
+				}
 			}
 			.sortTableCell {
 				height: 100%;

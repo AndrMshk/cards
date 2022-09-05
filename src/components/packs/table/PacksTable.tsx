@@ -26,7 +26,7 @@ const tableHeaderTitles = [
     sort: 'none',
   },
   {
-    title: 'Cards Count',
+    title: 'Cards',
     value: 'cardsCount',
     isAvailableToSort: false,
     sort: 'none',
@@ -56,8 +56,6 @@ export const PacksTable = () => {
   const { sortOrder, filterByCardsCount, packName, isOwn } = useAppSelector(state => state.packs.filterValues);
   const userId = useAppSelector(state => state.profile._id);
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
-
-  console.log(sortOrder);
 
   useEffect(() => {
     isLoggedIn && dispatch(setPacks(

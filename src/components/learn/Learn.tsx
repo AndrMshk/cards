@@ -24,12 +24,12 @@ const grades = ['не знал', 'забыл', 'долго думал', 'пер�
 export const Learn = () => {
 
   const dispatch = useAppDispatch();
-  const { packId, packName } = useParams();
+  const { packId } = useParams();
 
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [card, setCard] = useState<CardType>({} as CardType);
 
-  const cards = useAppSelector(state => state.cards.cards);
+  const { cards, packName } = useAppSelector(state => state.cards);
   const maxCardsCount = useAppSelector(state => state.packs.maxCardsCount);
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
 
@@ -54,7 +54,7 @@ export const Learn = () => {
 
   return (
     <div className={style.main}>
-      <BackButtonComponent path='/packs' title='Back to pack list'/>
+      <BackButtonComponent path="/packs" title="Back to pack list" />
       <div className={style.content}>
         <h2>Learn {packName}</h2>
         <Paper className={style.learnPaper}>

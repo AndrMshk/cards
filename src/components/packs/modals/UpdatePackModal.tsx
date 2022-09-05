@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAppDispatch } from '../../../app/bll-dal/store';
 import { TextField } from '@mui/material';
 import { updatePack } from '../bll-dal/packs-async-actions';
@@ -11,8 +11,10 @@ export const UpdatePackModal: React.FC<UpdatePackType> =
 
     const [newPackName, setNewPackName] = useState(packName);
 
+    useEffect(()=>{setNewPackName(packName)}, [packName])
+
     const updatePackHandler = () => {
-      packId && dispatch(updatePack(packId, newPackName));
+      packId  && dispatch(updatePack(packId, newPackName || ''));
       setNewPackName(newPackName);
     };
 

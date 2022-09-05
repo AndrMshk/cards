@@ -16,27 +16,25 @@ import { UpdatePackModal } from '../packs/modals/UpdatePackModal';
 export const Cards = () => {
 
   const dispatch = useAppDispatch();
-  const { packId, packName } = useParams();
   const navigate = useNavigate();
+  const { packId } = useParams();
 
   const [question, setQuestion] = useState<string>('');
   const [isOpenModalAddNewCard, setIsOpenModalAddNewCard] = useState(false);
   const [isOpenDeletePackModal, setIsOpenDeletePackModal] = useState(false);
   const [isOpenUpdatePackModal, setIsOpenUpdatePackModal] = useState(false);
 
-  const { packUserId, cards, page, pageCount, cardsTotalCount } = useAppSelector(state => state.cards);
+  const { packUserId, cards, page, pageCount, cardsTotalCount, packName } = useAppSelector(state => state.cards);
   const userId = useAppSelector(state => state.profile._id);
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
   const pack = useAppSelector(state => state.packs.currentCardPack);
-
-  console.log(pack);
 
   const questionDebounce = useDebounce(question, 1000);
 
   const packMenuData = [
     {
       title: 'Learn',
-      action: () => {pack && pack.cardsCount && navigate(`/learn/${pack._id}/${pack.name}`);},
+      action: () => {!!cardsTotalCount && navigate(`/learn/${packId}`);},
     },
     {
       title: 'Edit',
@@ -54,7 +52,7 @@ export const Cards = () => {
         cardsPack_id: packId,
         page,
         pageCount,
-        cardQuestion: !!question ? question : undefined,
+        cardQuestion: question || undefined,
       }));
   }, [packId, page, pageCount, questionDebounce, pack]);
 
@@ -63,7 +61,7 @@ export const Cards = () => {
   return (
     <div className={style.main}>
       <DeletePackModal
-        packName={pack && pack.name}
+        packName={packName}
         packId={packId}
         setIsOpenModal={setIsOpenDeletePackModal}
         isOpenModal={isOpenDeletePackModal} />
@@ -76,7 +74,10 @@ export const Cards = () => {
       <div className={style.content}>
         {userId !== packUserId
           ? <div className={style.headerBlock}>
-            <div className={style.title}><h2>{packName}</h2></div>
+            <div
+              className={style.title}
+              onClick={() => {!!cardsTotalCount && navigate(`/learn/${packId}`);}}
+            ><h2>{packName}</h2></div>
             <TextField
               className={style.search}
               id="search"
@@ -88,7 +89,9 @@ export const Cards = () => {
           </div>
           : <div className={style.headerBlock}>
             <div className={style.title}>
-              <div><PositionedMenu items={packMenuData}><h2>{packName}</h2></PositionedMenu></div>
+              <div>
+                <PositionedMenu items={packMenuData}><h2>{packName}</h2></PositionedMenu>
+              </div>
               <Button
                 onClick={() => setIsOpenModalAddNewCard(true)}
                 variant="contained">Add new card</Button>

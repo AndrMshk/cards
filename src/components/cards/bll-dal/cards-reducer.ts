@@ -1,7 +1,9 @@
 import { CardType, UpdatedGradeCardResponseType } from '../../../app/bll-dal/types';
+import { updatePackNameActionType } from '../../packs/bll-dal/packs-reducer';
 
 const initialState = {
   cards: [] as CardType[],
+  packName: '',
   packUserId: '',
   page: 1,
   pageCount: 5,
@@ -22,6 +24,7 @@ export const cardsReducer = (state: InitialStateType = initialState, action: Car
         cards: [...action.cards],
         cardsTotalCount: action.cardsTotalCount,
         packUserId: action.packUserId,
+        packName: action.packName || '',
       };
     case 'cards/CREATE-CARD':
       return { ...state, cards: [action.card, ...state.cards] };
@@ -49,13 +52,15 @@ export const cardsReducer = (state: InitialStateType = initialState, action: Car
       };
     case 'cards/SET-DEFAULT-PAGE-COUNT':
       return { ...state, pageCount: 5 };
+    case 'packs/UPDATE-PACK-NAME':
+      return { ...state, packName: action.newName };
     default:
       return state;
   }
 };
 
-export const setCardsAction = (cards: CardType[], cardsTotalCount: number, packUserId: string) =>
-  ({ type: 'cards/SET-CARDS', cards, cardsTotalCount, packUserId } as const);
+export const setCardsAction = (cards: CardType[], cardsTotalCount: number, packUserId: string, packName?: string) =>
+  ({ type: 'cards/SET-CARDS', cards, cardsTotalCount, packUserId, packName } as const);
 export const createCardAction = (card: CardType) => ({ type: 'cards/CREATE-CARD', card } as const);
 export const deleteCardAction = (cardId: string) => ({ type: 'cards/DELETE-CARD', cardId } as const);
 export const updateCardAction = (cardId: string, question?: string, answer?: string) =>
@@ -85,3 +90,4 @@ type CardsActionType =
   | ReturnType<typeof searchAnswerAction>
   | ReturnType<typeof updateCardGradeAction>
   | ReturnType<typeof setDefaultPageCountValueAction>
+  | updatePackNameActionType
