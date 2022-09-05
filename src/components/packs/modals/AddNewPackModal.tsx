@@ -14,12 +14,15 @@ export const AddNewPackModal: React.FC<AddNewPackPropsType> =
     const [newPackName, setNewPackName] = useState('');
     const [cover, setCover] = useState('');
 
-    useEffect(() => {setNewPackName('');}, [isOpenModal]);
+    useEffect(() => {
+      setNewPackName('');
+      setCover('');
+    }, [isOpenModal]);
 
     const addNewPack = () => {
       dispatch(createPack(newPackName, cover));
       setNewPackName('');
-      setCover('')
+      setCover('');
     };
 
     const changeCoverHandler = (e: React.ChangeEvent<HTMLInputElement>) => {

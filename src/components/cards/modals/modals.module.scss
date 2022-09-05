@@ -1,0 +1,32 @@
+
+.cardContent {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	margin-bottom: 10px;
+	div {
+		width: 100%;
+	}
+	.switchBlock {
+		width: 70%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.pictureQuestion {
+		margin-top: 20px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		max-width: 100%;
+		height: 200px;
+		img {
+			max-width: 100%;
+			max-height: 200px;
+		}
+	}
+}
+

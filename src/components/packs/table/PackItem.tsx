@@ -70,6 +70,7 @@ export const PackItem: React.FC<PackItemPropsType> = ({ pack, userId }) => {
         {deletePackData && <DeletePackModal
           packName={deletePackData.name}
           packId={deletePackData._id}
+          // deckCover={updatePackData.deckCover}
           isOpenModal={isOpenDeletePackModal}
           setIsOpenModal={setIsOpenDeletePackModal} />}
         <Button
@@ -80,11 +81,12 @@ export const PackItem: React.FC<PackItemPropsType> = ({ pack, userId }) => {
         {updatePackData && <UpdatePackModal
           packId={updatePackData._id}
           packName={updatePackData.name}
+          deckCover={updatePackData.deckCover}
           isOpenModal={isOpenUpdatePackModal}
           setIsOpenModal={setIsOpenUpdatePackModal} />}
         <Button
           disabled={pack.cardsCount === 0 || isLoading}
-          onClick={() => {navigate(`/learn/${pack._id}/${pack.name}`);}}
+          onClick={() => {navigate(`/learn/${pack._id}`);}}
           color="primary" size="small" startIcon={<MenuBookIcon />} />
       </TableCell>
     </TableRow>

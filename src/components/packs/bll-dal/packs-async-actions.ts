@@ -8,7 +8,7 @@ import {
   setCurrentPageAction,
   setCurrentPageCountAction,
   setMinMaxCardsCountAction,
-  setPacksAction, updatePackAction, updatePackNameAction,
+  setPacksAction, updatePackAction,
 } from './packs-reducer';
 
 export const setPacks = (params: ParamsGetPackRequestType): ThunkType => async(dispatch) => {
@@ -62,12 +62,11 @@ export const deletePack = (packId: string): ThunkType => async dispatch => {
   }
 };
 
-export const updatePack = (packId: string, newPackName: string): ThunkType => async dispatch => {
+export const updatePack = (packId: string, name?: string, deckCover?: string): ThunkType => async dispatch => {
   try {
     dispatch(setAppIsLoadingAction(true));
-    await packsApi.updatePack(packId, newPackName);
-    dispatch(updatePackAction(packId, newPackName));
-    dispatch(updatePackNameAction(packId, newPackName))
+    await packsApi.updatePack(packId, name, deckCover);
+    dispatch(updatePackAction(packId, {deckCover, name }));
   } catch (error) {
     if (axios.isAxiosError(error)) {
       dispatch(setAppErrorAction(error.message));

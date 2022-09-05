@@ -16,8 +16,9 @@ export const CardItem: React.FC<CardItemPropsType> = ({ card, userId }) => {
   const [updateCardData, setUpdateCardData] = useState<CardType | null>(null);
   const [isOpenDeleteCardModal, setIsOpenDeleteCardModal] = useState(false);
   const [isOpenUpdateCardModal, setIsOpenUpdateCardModal] = useState(false);
+  const [isValidPictureQuestion, setIsValidPictureQuestion] = useState(true);
 
-  const isLoading = useAppSelector(state => state.app.isLoading)
+  const isLoading = useAppSelector(state => state.app.isLoading);
 
   const openModalDeleteCard = () => {
     setIsOpenDeleteCardModal(true);
@@ -31,7 +32,16 @@ export const CardItem: React.FC<CardItemPropsType> = ({ card, userId }) => {
 
   return (
     <TableRow key={card._id}>
-      <TableCell scope="row" className={style.text}>{card.question}</TableCell>
+      <TableCell scope="row" className={style.text}>
+        {card.questionImg && isValidPictureQuestion
+          ? <div className={style.question}>
+            <img
+              onError={() => {setIsValidPictureQuestion(false);}}
+              src={card.questionImg}
+              alt="question" />
+          </div>
+          : card.question}
+      </TableCell>
       <TableCell className={style.text}>{card.answer}</TableCell>
       <TableCell
         align="right"

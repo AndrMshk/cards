@@ -28,6 +28,7 @@ export const Learn = () => {
 
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const [card, setCard] = useState<CardType>({} as CardType);
+  const [isValidPictureQuestion, setIsValidPictureQuestion] = useState(true);
 
   const { cards, packName } = useAppSelector(state => state.cards);
   const maxCardsCount = useAppSelector(state => state.packs.maxCardsCount);
@@ -59,7 +60,12 @@ export const Learn = () => {
         <h2>Learn {packName}</h2>
         <Paper className={style.learnPaper}>
           <h3>Question:</h3>
-          <span className={style.text}>{card.question}</span>
+          {card.questionImg && isValidPictureQuestion
+            ? <img
+              onError={()=>{setIsValidPictureQuestion(false)}}
+              src={card.questionImg} alt="question" />
+            : <span className={style.text}>{card.question}</span>
+          }
           <h5>Количество попыток ответов на вопрос: {card.shots}</h5>
           {!isChecked
             ? <Button variant="contained" onClick={() => setIsChecked(true)}>Show answer</Button>

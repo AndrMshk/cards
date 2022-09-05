@@ -1,9 +1,10 @@
 import { CardType, UpdatedGradeCardResponseType } from '../../../app/bll-dal/types';
-import { updatePackNameActionType } from '../../packs/bll-dal/packs-reducer';
+import { updatePacActionType } from '../../packs/bll-dal/packs-reducer';
 
 const initialState = {
   cards: [] as CardType[],
   packName: '',
+  deckCover: '',
   packUserId: '',
   page: 1,
   pageCount: 5,
@@ -52,8 +53,8 @@ export const cardsReducer = (state: InitialStateType = initialState, action: Car
       };
     case 'cards/SET-DEFAULT-PAGE-COUNT':
       return { ...state, pageCount: 5 };
-    case 'packs/UPDATE-PACK-NAME':
-      return { ...state, packName: action.newName };
+    case 'packs/UPDATE-PACK':
+      return { ...state, packName: action.payload.name || '', deckCover: action.payload.deckCover || '' };
     default:
       return state;
   }
@@ -90,4 +91,4 @@ type CardsActionType =
   | ReturnType<typeof searchAnswerAction>
   | ReturnType<typeof updateCardGradeAction>
   | ReturnType<typeof setDefaultPageCountValueAction>
-  | updatePackNameActionType
+  | updatePacActionType

@@ -15,9 +15,9 @@ export const packsApi = {
     deletePack(packId: string) {
         return instance.delete<AxiosResponse<any>>(`cards/pack/?id=${packId}`);
     },
-    updatePack(packId: string, newPackName: string | undefined) {
-        return instance.put<{ cardsPack: { _id: string, name: string } }, AxiosResponse<any>>
-        (`/cards/pack`, {cardsPack: {_id: packId, name: newPackName}});
+    updatePack(packId: string, newPackName: string | undefined, deckCover: string | undefined) {
+        return instance.put<{ cardsPack: { _id: string, name?: string, deckCover?: string } }, AxiosResponse<any>>
+        (`/cards/pack`, {cardsPack: {_id: packId, name: newPackName, deckCover}});
     },
 };
 

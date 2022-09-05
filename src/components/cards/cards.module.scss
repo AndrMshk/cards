@@ -45,6 +45,18 @@
 	}
 	.cardsTable {
 		width: 100%;
+		.question {
+			min-width: 194px;
+			max-width: 194px;
+			word-wrap: break-word;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			img {
+				max-height: 100px;
+				max-width: 300px;
+			}
+		}
 		.text {
 			min-width: 194px;
 			max-width: 194px;

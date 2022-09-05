@@ -1,4 +1,4 @@
-import { PackType } from '../../../app/bll-dal/types';
+import { PackType, UpdatePackParamsType } from '../../../app/bll-dal/types';
 
 const initialState = {
   cardPacks: [] as PackType[],
@@ -32,7 +32,7 @@ export const packsReducer = (state: InitialStateType = initialState, action: Pac
     case 'packs/UPDATE-PACK':
       return {
         ...state, cardPacks: state.cardPacks.map(el => el._id === action.packId
-          ? { ...el, name: action.newPackName }
+          ? { ...el, ...action.payload }
           : el),
       };
     case 'packs/SET-CURRENT-PAGE':
@@ -62,11 +62,6 @@ export const packsReducer = (state: InitialStateType = initialState, action: Pac
         ...state, page: 1, pageCount: 5, filterValues:
           { sortOrder: undefined, isOwn: false, packName: '', filterByCardsCount: { max: undefined, min: undefined } },
       };
-    case 'packs/UPDATE-PACK-NAME':
-      return {
-        ...state,
-        cardPacks: state.cardPacks.map(el => el._id === action.packId ? { ...el, name: action.newName } : el),
-      };
     default:
       return state;
   }
@@ -77,9 +72,6 @@ export const setPacksAction = (packs: PackType[], packsTotalCount: number) => ({
 } as const);
 export const createPackAction = (pack: PackType) => ({ type: 'packs/CREATE-PACK', pack } as const);
 export const deletePackAction = (packId: string) => ({ type: 'packs/DELETE-PACK', packId } as const);
-export const updatePackAction = (packId: string, newPackName: string | undefined) => ({
-  type: 'packs/UPDATE-PACK', packId, newPackName,
-} as const);
 export const setCurrentPageAction = (page: number) => ({ type: 'packs/SET-CURRENT-PAGE', page } as const);
 export const setCurrentPageCountAction = (pageCount: number) => ({
   type: 'packs/SET-CURRENT-PAGE-COUNT', pageCount,
@@ -99,16 +91,15 @@ export const setMinMaxCardsCountAction = (minCardsCount: number, maxCardsCount: 
   type: 'packs/SET-MIN-MAX-CARDS-COUNT', minCardsCount, maxCardsCount,
 } as const);
 export const resetAllFiltersAction = () => ({ type: 'packs/RESET-FILTERS' } as const);
-export const updatePackNameAction = (packId: string, newName: string) =>
-  ({ type: 'packs/UPDATE-PACK-NAME', packId, newName } as const);
+export const updatePackAction = (packId: string, params: UpdatePackParamsType) =>
+  ({ type: 'packs/UPDATE-PACK', packId, payload: {name: params.name, deckCover: params.deckCover} } as const);
 
 type InitialStateType = typeof initialState
-export type updatePackNameActionType = ReturnType<typeof updatePackNameAction>
+export type updatePacActionType = ReturnType<typeof updatePackAction>
 type PacksActionType =
   | ReturnType<typeof setPacksAction>
   | ReturnType<typeof createPackAction>
   | ReturnType<typeof deletePackAction>
-  | ReturnType<typeof updatePackAction>
   | ReturnType<typeof setCurrentPageAction>
   | ReturnType<typeof setCurrentPageCountAction>
   | ReturnType<typeof setSortOrderAction>
@@ -118,7 +109,9 @@ type PacksActionType =
   | ReturnType<typeof setCurrentPackAction>
   | ReturnType<typeof setMinMaxCardsCountAction>
   | ReturnType<typeof resetAllFiltersAction>
-  | updatePackNameActionType
+  | updatePacActionType
+
+
 
 
 

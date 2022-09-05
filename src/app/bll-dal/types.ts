@@ -190,4 +190,8 @@ export type UpdateUserDataType = {
   avatar?: string
 }
 
+export type UpdatePackParamsType = {
+  name?: string
+  deckCover?: string
+}
 
