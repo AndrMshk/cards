@@ -39,3 +39,17 @@
 	}
 }
 
+.coverDelete {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	margin-bottom: 20px;
+	img {
+		max-height: 50%;
+		max-width: 50%;
+	}
+}
+
+

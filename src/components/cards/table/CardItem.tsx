@@ -60,10 +60,9 @@ export const CardItem: React.FC<CardItemPropsType> = ({ card, userId }) => {
         {deleteCardData && <DeleteCardModal
           cardId={deleteCardData._id}
           cardQuestion={deleteCardData.question}
+          questionImg={card.questionImg}
           isOpenModal={isOpenDeleteCardModal}
-          setIsOpenModal={setIsOpenDeleteCardModal}
-        />
-        }
+          setIsOpenModal={setIsOpenDeleteCardModal} />}
         <Button
           onClick={openModalUpdateCard}
           disabled={userId !== card.user_id || isLoading}
@@ -73,6 +72,7 @@ export const CardItem: React.FC<CardItemPropsType> = ({ card, userId }) => {
           cardId={updateCardData._id}
           cardQuestion={updateCardData.question}
           cardAnswer={updateCardData.answer}
+          questionImg={card.questionImg}
           isOpenModal={isOpenUpdateCardModal}
           setIsOpenModal={setIsOpenUpdateCardModal} />}
       </TableCell>

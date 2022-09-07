@@ -83,7 +83,7 @@ export type GetCardsResponseType = {
   maxGrade: number
   minGrade: number
   packCreated: Date
-  packDeckCover: string | null
+  packDeckCover: string | undefined
   packName: string
   packPrivate: false
   packUpdated: Date

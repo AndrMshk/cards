@@ -1,13 +1,11 @@
-import React from 'react';
-import { useAppDispatch, useAppSelector } from '../../../app/bll-dal/store';
+import React, { memo } from 'react';
+import { useAppDispatch } from '../../../app/bll-dal/store';
 import { BasicModal } from '../../../common/basicModal/BasicModal';
 import { deletePack } from '../bll-dal/packs-async-actions';
+import style from './modals.module.scss';
 
 export const DeletePackModal: React.FC<DeletePackPropsType> =
-  React.memo(({
-    packId, packName, isOpenModal,
-    setIsOpenModal,
-  }) => {
+  memo(({ packId, packName, isOpenModal, setIsOpenModal, deckCover }) => {
 
     const dispatch = useAppDispatch();
 
@@ -21,6 +19,7 @@ export const DeletePackModal: React.FC<DeletePackPropsType> =
         buttonName="Yes"
         isForDelete
         handleOperation={deletePackHandler}>
+        {deckCover && <div className={style.coverDelete}><img src={deckCover} alt="cover" /></div>}
         <div style={{ wordWrap: 'break-word' }}>Do you really want to remove pack <b>{packName}</b>?</div>
         <div>The pack will be removed.</div>
       </BasicModal>
@@ -32,4 +31,5 @@ type DeletePackPropsType = {
   packName: string | undefined
   isOpenModal: boolean
   setIsOpenModal: (value: boolean) => void
+  deckCover?: string
 }

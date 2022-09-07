@@ -70,7 +70,7 @@ export const PackItem: React.FC<PackItemPropsType> = ({ pack, userId }) => {
         {deletePackData && <DeletePackModal
           packName={deletePackData.name}
           packId={deletePackData._id}
-          // deckCover={updatePackData.deckCover}
+          deckCover={deletePackData.deckCover}
           isOpenModal={isOpenDeletePackModal}
           setIsOpenModal={setIsOpenDeletePackModal} />}
         <Button

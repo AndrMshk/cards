@@ -24,7 +24,8 @@ export const Cards = () => {
   const [isOpenDeletePackModal, setIsOpenDeletePackModal] = useState(false);
   const [isOpenUpdatePackModal, setIsOpenUpdatePackModal] = useState(false);
 
-  const { packUserId, cards, page, pageCount, cardsTotalCount, packName } = useAppSelector(state => state.cards);
+  const { packUserId, cards, page, pageCount, cardsTotalCount, packName, deckCover } =
+    useAppSelector(state => state.cards);
   const userId = useAppSelector(state => state.profile._id);
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
   const pack = useAppSelector(state => state.packs.currentCardPack);
@@ -60,51 +61,47 @@ export const Cards = () => {
 
   return (
     <div className={style.main}>
+      <AddNewCardModal isOpenModal={isOpenModalAddNewCard} setIsOpenModal={setIsOpenModalAddNewCard} />
       <DeletePackModal
         packName={packName}
         packId={packId}
+        deckCover={deckCover}
         setIsOpenModal={setIsOpenDeletePackModal}
         isOpenModal={isOpenDeletePackModal} />
       <UpdatePackModal
         packName={packName}
         packId={packId}
+        deckCover={deckCover}
         setIsOpenModal={setIsOpenUpdatePackModal}
         isOpenModal={isOpenUpdatePackModal} />
       <BackButtonComponent />
       <div className={style.content}>
-        {userId !== packUserId
-          ? <div className={style.headerBlock}>
-            <div
+        <div className={style.headerBlock}>
+          {userId !== packUserId
+            ? <div
               className={style.title}
-              onClick={() => {!!cardsTotalCount && navigate(`/learn/${packId}`);}}
-            ><h2 style={{maxWidth: '100%'}}>{packName}</h2></div>
-            <TextField
-              className={style.search}
-              id="search"
-              label="search"
-              variant="outlined"
-              value={question}
-              onChange={e => setQuestion(e.target.value)} />
-            <AddNewCardModal isOpenModal={isOpenModalAddNewCard} setIsOpenModal={setIsOpenModalAddNewCard} />
-          </div>
-          : <div className={style.headerBlock}>
-            <div className={style.title}>
-              <div>
-                <PositionedMenu items={packMenuData}><h2>{packName}</h2></PositionedMenu>
-              </div>
+              onClick={() => {!!cardsTotalCount && navigate(`/learn/${packId}`);}}>
+              {deckCover && <img src={deckCover} alt="deckCover" />}
+              <h2 style={{ maxWidth: '100%' }}>{packName}</h2></div>
+            : <div className={style.titlePlusButton}>
+              <PositionedMenu items={packMenuData}>
+                <div className={style.title}>
+                  {deckCover && <img src={deckCover} alt="deckCover" />}
+                  <h2>{packName}</h2>
+                </div>
+              </PositionedMenu>
               <Button
                 onClick={() => setIsOpenModalAddNewCard(true)}
                 variant="contained">Add new card</Button>
-            </div>
-            <TextField
-              className={style.search}
-              id="search"
-              label="search"
-              variant="outlined"
-              value={question}
-              onChange={e => setQuestion(e.target.value)} />
-            <AddNewCardModal isOpenModal={isOpenModalAddNewCard} setIsOpenModal={setIsOpenModalAddNewCard} />
-          </div>}
+            </div>}
+          <TextField
+            className={style.search}
+            id="search"
+            label="search"
+            variant="outlined"
+            value={question}
+            onChange={e => setQuestion(e.target.value)} />
+        </div>
         <CardsTable cards={cards} userId={userId} pageCount={cardsTotalCount} rowsPerPage={pageCount} />
       </div>
     </div>

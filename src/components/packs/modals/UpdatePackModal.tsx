@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useAppDispatch } from '../../../app/bll-dal/store';
 import { TextField } from '@mui/material';
 import { updatePack } from '../bll-dal/packs-async-actions';
@@ -7,7 +7,7 @@ import { convertFileToBase64 } from '../../../utils/convertorToBase64/conventorT
 import style from './modals.module.scss';
 
 export const UpdatePackModal: React.FC<UpdatePackType> =
-  React.memo(({ packId, packName, isOpenModal, setIsOpenModal, deckCover }) => {
+  memo(({ packId, packName, isOpenModal, setIsOpenModal, deckCover }) => {
 
     const dispatch = useAppDispatch();
 
@@ -47,6 +47,13 @@ export const UpdatePackModal: React.FC<UpdatePackType> =
               />
               <img src={cover} alt="cover" />
             </label>
+            <TextField
+              style={{ width: '100%' }}
+              label="Title"
+              variant="standard"
+              color="primary"
+              value={newPackName}
+              onChange={(e) => setNewPackName(e.currentTarget.value)} />
           </div>
           : <TextField
             style={{ width: '100%' }}
@@ -57,7 +64,7 @@ export const UpdatePackModal: React.FC<UpdatePackType> =
             onChange={(e) => setNewPackName(e.currentTarget.value)} />
         }
         <div style={{ wordWrap: 'break-word', marginTop: '10px' }}>
-          Do you really want to change {deckCover ? 'This pack' : <b>{packName}</b>}?
+          Do you really want to change {deckCover ? 'this pack' : <b>{packName}</b>}?
         </div>
       </BasicModal>
     );

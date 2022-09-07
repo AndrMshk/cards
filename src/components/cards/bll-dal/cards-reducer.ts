@@ -26,6 +26,7 @@ export const cardsReducer = (state: InitialStateType = initialState, action: Car
         cardsTotalCount: action.cardsTotalCount,
         packUserId: action.packUserId,
         packName: action.packName || '',
+        deckCover: action.deckCover || '',
       };
     case 'cards/CREATE-CARD':
       return { ...state, cards: [action.card, ...state.cards] };
@@ -60,8 +61,9 @@ export const cardsReducer = (state: InitialStateType = initialState, action: Car
   }
 };
 
-export const setCardsAction = (cards: CardType[], cardsTotalCount: number, packUserId: string, packName?: string) =>
-  ({ type: 'cards/SET-CARDS', cards, cardsTotalCount, packUserId, packName } as const);
+export const setCardsAction =
+  (cards: CardType[], cardsTotalCount: number, packUserId: string, packName?: string, deckCover?: string) =>
+    ({ type: 'cards/SET-CARDS', cards, cardsTotalCount, packUserId, packName, deckCover } as const);
 export const createCardAction = (card: CardType) => ({ type: 'cards/CREATE-CARD', card } as const);
 export const deleteCardAction = (cardId: string) => ({ type: 'cards/DELETE-CARD', cardId } as const);
 export const updateCardAction = (cardId: string, question?: string, answer?: string) =>

@@ -18,7 +18,8 @@ export const setCards = (params: ParamsGetCardsRequestType): ThunkType => async 
     const res = await cardsApi.setCards(params);
     dispatch(setCurrentPageAction(params.page || 1));
     dispatch(setCurrentPageCountAction(params.pageCount || 5));
-    dispatch(setCardsAction(res.data.cards, res.data.cardsTotalCount, res.data.packUserId, res.data.packName));
+    dispatch(setCardsAction
+    (res.data.cards, res.data.cardsTotalCount, res.data.packUserId, res.data.packName, res.data.packDeckCover));
   } catch (error) {
     if (axios.isAxiosError(error)) {
       dispatch(setAppErrorAction(error.message));
