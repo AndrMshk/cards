@@ -42,12 +42,18 @@ export const ControlPanel = () => {
       </div>
       <div className={style.reset}>
         <h5>Reset</h5>
-        <HighlightOffIcon
+        <Button
           onClick={() => {
             setSearchName('');
             setTempValues({ min: minCardsCount, max: maxCardsCount });
             dispatch(resetAllFiltersAction());
-          }} />
+          }}
+          disabled={isLoading}
+          color="error" size="small"
+          startIcon={
+            <HighlightOffIcon
+              style={{ color: (isLoading ? '#bdbdbd' : '#1976d2') }} />}
+        />
       </div>
     </div>
   );

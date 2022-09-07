@@ -49,11 +49,25 @@
 				flex-direction: column;
 				justify-content: space-between;
 				align-items: center;
-				svg {
-					width: 60%;
-					height: 60%;
-					cursor: pointer;
-					color: #1976d2;
+				button {
+					max-width: 45px;
+					min-width: 45px;
+					margin-top: 8px;
+					height: 64px;
+					border-radius: 50%;
+					padding: 0;
+				}
+				span {
+					height: 45px;
+					width: 45px;
+					display: block;
+					text-align: center;
+					margin: 0;
+					svg {
+						height: 100%;
+						width: 100%;
+						color: #1976d2;
+					}
 				}
 			}
 			.isOnwToggle {
@@ -90,8 +104,8 @@
 			}
 			.packName {
 				word-wrap: break-word;
-				max-width: 230px;
-				min-width: 230px;
+				max-width: 290px;
+				min-width: 290px;
 				font-weight: bold;
 				cursor: pointer;
 				.cover {
@@ -100,7 +114,7 @@
 					display: flex;
 					align-items: center;
 					gap: 10px;
-					.title{
+					.title {
 						max-width: 74%;
 						height: 100%;
 						word-wrap: break-word;
@@ -127,6 +141,37 @@
 			.tableHeader {
 				max-height: 48px;
 				min-height: 48px;
+			}
+		}
+	}
+}
+
+.buttonsGroup {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	button {
+		min-width: 20px;
+		max-width: 20px;
+		min-height: 20px;
+		max-height: 20px;
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		span {
+			display: block;
+			min-width: 20px;
+			max-width: 20px;
+			min-height: 20px;
+			max-height: 20px;
+			text-align: center;
+			margin: 0 auto;
+			svg {
+				height: 100%;
+				width: 100%;
 			}
 		}
 	}

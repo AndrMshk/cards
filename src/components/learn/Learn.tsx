@@ -19,7 +19,7 @@ const getCard = (cards: CardType[]) => {
   return cards[res.id + 1];
 };
 
-const grades = ['не знал', 'забыл', 'долго думал', 'перепутал', 'знал'];
+const grades = ['Did not know', 'Forgot', 'A lot of thought', 'Сonfused', 'Knew the answer'];
 
 export const Learn = () => {
 

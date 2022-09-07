@@ -50,7 +50,8 @@ export const CardItem: React.FC<CardItemPropsType> = ({ card, userId }) => {
       </TableCell>
       {/*@ts-ignore*/}
       <TableCell align="right" className={style.text}>{formatDate(card.updated)}</TableCell>
-      <TableCell sx={{ textAlign: 'right' }} style={{ minWidth: '130px', maxWidth: '130px' }}>
+      <TableCell sx={{ textAlign: 'right' }} style={{ minWidth: '80px', maxWidth: '80px' }}>
+        <div className={style.buttonsGroup}>
         <Button
           onClick={openModalDeleteCard}
           disabled={userId !== card.user_id || isLoading}
@@ -75,6 +76,7 @@ export const CardItem: React.FC<CardItemPropsType> = ({ card, userId }) => {
           questionImg={card.questionImg}
           isOpenModal={isOpenUpdateCardModal}
           setIsOpenModal={setIsOpenUpdateCardModal} />}
+        </div>
       </TableCell>
     </TableRow>
   );

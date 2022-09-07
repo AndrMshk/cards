@@ -48,10 +48,10 @@ export const PackItem: React.FC<PackItemPropsType> = ({ pack, userId }) => {
           ? <div
             className={style.cover}>
             <img
-              onError={()=>{setIsValidCover(false)}}
+              onError={() => {setIsValidCover(false);}}
               src={pack.deckCover}
               alt="deckCover" />
-            <div className={style.title} >{pack.name}</div>
+            <div className={style.title}>{pack.name}</div>
           </div>
           : pack.name}
         </div>
@@ -60,34 +60,39 @@ export const PackItem: React.FC<PackItemPropsType> = ({ pack, userId }) => {
       <TableCell
         align="right"
         style={{ wordWrap: 'break-word', minWidth: '198px', maxWidth: '198px' }}>{pack.user_name}</TableCell>
-      <TableCell align="right" style={{ minWidth: '140px', maxWidth: '140px' }}>{formatDate(pack.updated)}</TableCell>
-      <TableCell sx={{ textAlign: 'right' }} style={{ minWidth: '200px', maxWidth: '200px' }}>
-        <Button
-          onClick={openModalDeletePackHandler}
-          disabled={userId !== pack.user_id || isLoading}
-          color="error" size="small"
-          startIcon={<DeleteIcon />} />
-        {deletePackData && <DeletePackModal
-          packName={deletePackData.name}
-          packId={deletePackData._id}
-          deckCover={deletePackData.deckCover}
-          isOpenModal={isOpenDeletePackModal}
-          setIsOpenModal={setIsOpenDeletePackModal} />}
-        <Button
-          onClick={openModalUpdatePackHandler}
-          disabled={userId !== pack.user_id || isLoading}
-          color="secondary" size="small"
-          startIcon={<BorderColorIcon />} />
-        {updatePackData && <UpdatePackModal
-          packId={updatePackData._id}
-          packName={updatePackData.name}
-          deckCover={updatePackData.deckCover}
-          isOpenModal={isOpenUpdatePackModal}
-          setIsOpenModal={setIsOpenUpdatePackModal} />}
-        <Button
-          disabled={pack.cardsCount === 0 || isLoading}
-          onClick={() => {navigate(`/learn/${pack._id}`);}}
-          color="primary" size="small" startIcon={<MenuBookIcon />} />
+      <TableCell align="right" style={{ minWidth: '160px', maxWidth: '160px' }}>{formatDate(pack.updated)}</TableCell>
+      <TableCell sx={{ textAlign: 'right' }} style={{ minWidth: '120px', maxWidth: '120px' }}>
+        <div className={style.buttonsGroup}>
+          <Button
+            onClick={openModalDeletePackHandler}
+            disabled={userId !== pack.user_id || isLoading}
+            color="error" size="small"
+            startIcon={<DeleteIcon />} />
+          {deletePackData && <DeletePackModal
+            packName={deletePackData.name}
+            packId={deletePackData._id}
+            deckCover={deletePackData.deckCover}
+            isOpenModal={isOpenDeletePackModal}
+            setIsOpenModal={setIsOpenDeletePackModal} />}
+          <Button
+            onClick={openModalUpdatePackHandler}
+            disabled={userId !== pack.user_id || isLoading}
+            color="secondary" size="small"
+            startIcon={<BorderColorIcon />}
+          />
+          {updatePackData && <UpdatePackModal
+            packId={updatePackData._id}
+            packName={updatePackData.name}
+            deckCover={updatePackData.deckCover}
+            isOpenModal={isOpenUpdatePackModal}
+            setIsOpenModal={setIsOpenUpdatePackModal} />}
+          <Button
+            disabled={pack.cardsCount === 0 || isLoading}
+            onClick={() => {navigate(`/learn/${pack._id}`);}}
+            color="primary" size="small"
+            startIcon={<MenuBookIcon />}
+          />
+        </div>
       </TableCell>
     </TableRow>
   );
