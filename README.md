@@ -1,3 +1,5 @@
-# Getting Started with Create React App
+# Cards education game
 
-This project was bootstrapped with
+https://AndrMshk.github.io/cards
+
+Stack: TypeScript, React, Redux, Routes, formik, useForm, thunk, axios, scss, MUI.
