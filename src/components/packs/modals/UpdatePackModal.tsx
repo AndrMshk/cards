@@ -53,7 +53,7 @@ export const UpdatePackModal: React.FC<UpdatePackType> =
               variant="standard"
               color="primary"
               value={newPackName}
-              onChange={(e) => setNewPackName(e.currentTarget.value)} />
+              onChange={e => setNewPackName(e.currentTarget.value)} />
           </div>
           : <TextField
             style={{ width: '100%' }}
@@ -61,7 +61,7 @@ export const UpdatePackModal: React.FC<UpdatePackType> =
             variant="standard"
             color="primary"
             value={newPackName}
-            onChange={(e) => setNewPackName(e.currentTarget.value)} />
+            onChange={e => setNewPackName(e.currentTarget.value)} />
         }
         <div style={{ wordWrap: 'break-word', marginTop: '10px' }}>
           Do you really want to change {deckCover ? 'this pack' : <b>{packName}</b>}?

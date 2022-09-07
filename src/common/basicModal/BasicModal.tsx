@@ -52,8 +52,10 @@ export const BasicModal: React.FC<ModalPropsType> = React.memo(
           {children}
           <div className={styles.buttonsBlock}>
             <Button onClick={handleClose} color="primary" variant="contained">Cancel</Button>
-            <Button onClick={onClickHandler} color={isForDelete ? 'error' : 'primary'}
-                    variant="contained">{buttonName}</Button>
+            <Button
+              onClick={onClickHandler} color={isForDelete ? 'error' : 'primary'}
+              variant="contained">
+              {buttonName}</Button>
           </div>
         </Box>
       </Modal>

@@ -26,7 +26,7 @@ export const SearchComponent: FC<SearchComponentPropsType> = ({ name, setName })
           placeholder="Search packs"
           inputProps={{ 'aria-label': 'search google maps' }}
           value={name}
-          onChange={(e) => {setName(e.target.value);}} />
+          onChange={e => {setName(e.target.value);}} />
         <IconButton
           onClick={() => {dispatch(sortPacksByNameAction(name));}}
           type="button" sx={{ p: '10px', color: '#1976d2' }} aria-label="search">

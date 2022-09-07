@@ -1,23 +1,19 @@
+@import './src/common/styles/mixins';
+
 .main {
+	@include flex(space-between, column, center);
 	height: 200px;
 	width: 100%;
 	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	align-items: center;
 	margin-bottom: 60px;
 	.coverTitle {
+		@include flex(space-between, row, center);
 		width: 100%;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
 	}
 	.cover {
+		@include flex(center, row, center);
 		width: 100%;
 		height: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
 		font-size: 30px;
 		font-weight: bold;
 		img {
@@ -40,9 +36,7 @@
 }
 
 .coverDelete {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	@include flex(center, row, center);
 	width: 100%;
 	height: 100%;
 	margin-bottom: 20px;

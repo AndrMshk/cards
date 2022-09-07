@@ -1,4 +1,9 @@
-import { LoginRequestDataType, NewPasswordRequestDataType, SignUpRequestDataType, ThunkType } from '../../../app/bll-dal/types';
+import {
+  LoginRequestDataType,
+  NewPasswordRequestDataType,
+  SignUpRequestDataType,
+  ThunkType,
+} from '../../../app/bll-dal/types';
 import { setAppErrorAction, setAppIsLoadingAction } from '../../../app/bll-dal/app-reducer';
 import { authAPI } from './auth-api';
 import { setProfileAction } from '../../profile/bll-dal/profile-reducer';

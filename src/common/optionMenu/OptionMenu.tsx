@@ -3,11 +3,6 @@ import { FC, ReactElement } from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-type PositionedMenuPropsType = {
-  items: { title: string, action: () => void }[]
-  children: ReactElement
-}
-
 export const PositionedMenu: FC<PositionedMenuPropsType> = ({ items, children }) => {
 
   const [isOpen, setIsOpen] = React.useState<null | HTMLElement>(null);
@@ -30,3 +25,8 @@ export const PositionedMenu: FC<PositionedMenuPropsType> = ({ items, children })
     </div>
   );
 };
+
+type PositionedMenuPropsType = {
+  items: { title: string, action: () => void }[]
+  children: ReactElement
+}

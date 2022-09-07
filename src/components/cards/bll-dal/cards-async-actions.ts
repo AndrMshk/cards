@@ -46,6 +46,7 @@ export const createCard = (newCard: CardType): ThunkType => async dispatch => {
     dispatch(setAppIsLoadingAction(false));
   }
 };
+
 export const deleteCard = (cardId: string): ThunkType => async dispatch => {
   try {
     dispatch(setAppIsLoadingAction(true));
@@ -61,6 +62,7 @@ export const deleteCard = (cardId: string): ThunkType => async dispatch => {
     dispatch(setAppIsLoadingAction(false));
   }
 };
+
 export const updateCard = (cardId: string, question?: string, answer?: string): ThunkType => async dispatch => {
   try {
     dispatch(setAppIsLoadingAction(true));
@@ -76,6 +78,7 @@ export const updateCard = (cardId: string, question?: string, answer?: string): 
     dispatch(setAppIsLoadingAction(false));
   }
 };
+
 export const updateCardGrade = (cardId: string, grade: number): ThunkType => async dispatch => {
   try {
     dispatch(setAppIsLoadingAction(true));

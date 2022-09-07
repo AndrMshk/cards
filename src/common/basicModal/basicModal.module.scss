@@ -1,7 +1,7 @@
+@import './src/common/styles/mixins';
+
 .title {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	@include flex(space-between, row, center);
 	font-style: normal;
 	font-weight: 500;
 	font-size: 18px;
@@ -9,8 +9,7 @@
 }
 
 .buttonsBlock {
-	display: flex;
-	justify-content: space-between;
+	@include flex(space-between, row, center);
 	margin-top: 40px;
 }
 

@@ -30,8 +30,8 @@ export const Packs = () => {
           >Add new pack</Button>
           <AddNewPackModal isOpenModal={isOpenAddPackModal} setIsOpenModal={setIsOpenAddPackModal} />
         </div>
-        <ControlPanel/>
-        <PacksTable/>
+        <ControlPanel />
+        <PacksTable />
       </div>
     </div>
   );

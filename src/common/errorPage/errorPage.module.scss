@@ -1,20 +1,15 @@
+@import './src/common/styles/mixins';
+
 .main {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	@include flex(center, row, center);
 	gap: 10px;
 	height: 90vh;
 	width: 100%;
 	.content {
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		@include flex(center, row, center);
 		gap: 30px;
 		.info {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
+			@include flex(center, column, center);
 			h1 {
 				margin-bottom: 0;
 			}

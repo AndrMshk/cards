@@ -52,30 +52,30 @@ export const CardItem: React.FC<CardItemPropsType> = ({ card, userId }) => {
       <TableCell align="right" className={style.text}>{formatDate(card.updated)}</TableCell>
       <TableCell sx={{ textAlign: 'right' }} style={{ minWidth: '80px', maxWidth: '80px' }}>
         <div className={style.buttonsGroup}>
-        <Button
-          onClick={openModalDeleteCard}
-          disabled={userId !== card.user_id || isLoading}
-          color="error"
-          size="small"
-          startIcon={<DeleteIcon />} />
-        {deleteCardData && <DeleteCardModal
-          cardId={deleteCardData._id}
-          cardQuestion={deleteCardData.question}
-          questionImg={card.questionImg}
-          isOpenModal={isOpenDeleteCardModal}
-          setIsOpenModal={setIsOpenDeleteCardModal} />}
-        <Button
-          onClick={openModalUpdateCard}
-          disabled={userId !== card.user_id || isLoading}
-          color="primary" size="small"
-          startIcon={<BorderColorIcon />} />
-        {updateCardData && <UpdateCardModal
-          cardId={updateCardData._id}
-          cardQuestion={updateCardData.question}
-          cardAnswer={updateCardData.answer}
-          questionImg={card.questionImg}
-          isOpenModal={isOpenUpdateCardModal}
-          setIsOpenModal={setIsOpenUpdateCardModal} />}
+          <Button
+            onClick={openModalDeleteCard}
+            disabled={userId !== card.user_id || isLoading}
+            color="error"
+            size="small"
+            startIcon={<DeleteIcon />} />
+          {deleteCardData && <DeleteCardModal
+            cardId={deleteCardData._id}
+            cardQuestion={deleteCardData.question}
+            questionImg={card.questionImg}
+            isOpenModal={isOpenDeleteCardModal}
+            setIsOpenModal={setIsOpenDeleteCardModal} />}
+          <Button
+            onClick={openModalUpdateCard}
+            disabled={userId !== card.user_id || isLoading}
+            color="primary" size="small"
+            startIcon={<BorderColorIcon />} />
+          {updateCardData && <UpdateCardModal
+            cardId={updateCardData._id}
+            cardQuestion={updateCardData.question}
+            cardAnswer={updateCardData.answer}
+            questionImg={card.questionImg}
+            isOpenModal={isOpenUpdateCardModal}
+            setIsOpenModal={setIsOpenUpdateCardModal} />}
         </div>
       </TableCell>
     </TableRow>

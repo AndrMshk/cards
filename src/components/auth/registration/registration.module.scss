@@ -1,35 +1,25 @@
+@import './src/common/styles/mixins';
+
 .main {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	@include flex(center, row, center);
 	.content {
+		@include flex(space-between, column, center);
 		height: 552px;
 		width: 413px;
 		margin-top: 60px;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		align-items: center;
 	}
 	h2 {
 		margin-top: 35px;
 	}
 	form {
+		@include flex(space-between, column, center);
 		height: 100%;
 		width: 347px;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		align-items: center;
 		padding-bottom: 42px;
 		.input {
-			display: flex;
-
-			justify-content: center;
-			flex-direction: row;
-			align-items: center;
+			@include flex(center, row, center);
 			width: 347px;
-			height: 80px;
+			height: 50px;
 			div {
 				width: 100%;
 			}

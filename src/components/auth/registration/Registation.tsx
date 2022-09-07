@@ -52,7 +52,6 @@ export const Registration = () => {
             render={({ field }) => (
               <TextField
                 className={style.input}
-                style={{ flexDirection: 'column' }}
                 variant="standard"
                 color="primary"
                 id="email"

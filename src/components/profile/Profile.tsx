@@ -53,7 +53,7 @@ export const Profile = () => {
       <BackButtonComponent title="To pack list" path="/packs" />
       <Paper className={style.content} elevation={4}>
         <h2>Personal Information</h2>
-        <AvatarComponent/>
+        <AvatarComponent />
         {editMode
           ? <EditNameForm
             name={name}
@@ -61,14 +61,11 @@ export const Profile = () => {
             handleSubmit={formik.handleSubmit}
             newName={formik.values.name}
             setEditMode={setEditMode}
-            error={formik.errors.name}
-          />
-          : <div className={style.name}><h3>
-            {name}
+            error={formik.errors.name} />
+          : <div className={style.name}><h3>{name}
             <BorderColorOutlinedIcon
               style={{ cursor: 'pointer', height: '16px', width: '16px', marginLeft: '9px', marginBottom: '-1px' }}
-              onClick={() => setEditMode(true)}
-            />
+              onClick={() => setEditMode(true)} />
           </h3></div>}
         <p>{email}</p>
         <Button
@@ -76,8 +73,7 @@ export const Profile = () => {
           className={style.button}
           variant="outlined"
           startIcon={<ExitToAppIcon />}>
-          Log out
-        </Button>
+          Log out </Button>
       </Paper>
     </div>
   );

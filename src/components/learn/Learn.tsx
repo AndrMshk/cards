@@ -62,7 +62,7 @@ export const Learn = () => {
           <h3>Question:</h3>
           {card.questionImg && isValidPictureQuestion
             ? <img
-              onError={()=>{setIsValidPictureQuestion(false)}}
+              onError={() => {setIsValidPictureQuestion(false);}}
               src={card.questionImg} alt="question" />
             : <span className={style.text}>{card.question}</span>
           }

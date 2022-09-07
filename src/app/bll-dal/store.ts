@@ -7,7 +7,6 @@ import { profileReducer } from '../../components/profile/bll-dal/profile-reducer
 import { DispatchType, RootStateType } from './types';
 import { cardsReducer } from '../../components/cards/bll-dal/cards-reducer';
 import { packsReducer } from '../../components/packs/bll-dal/packs-reducer';
-import { modalReducer } from '../../common/basicModal/bll/modal-reducer';
 
 export const rootReducer = combineReducers({
   app: appReducer,
@@ -15,7 +14,6 @@ export const rootReducer = combineReducers({
   profile: profileReducer,
   packs: packsReducer,
   cards: cardsReducer,
-  modals: modalReducer
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));

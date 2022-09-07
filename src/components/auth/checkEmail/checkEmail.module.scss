@@ -1,15 +1,12 @@
+@import './src/common/styles/mixins';
+
 .main {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	@include flex(center, row, center);
 	.content {
 		height: 450px;
 		width: 413px;
 		margin-top: 60px;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		align-items: center;
+		@include flex(space-between, column, center);
 	}
 	h2 {
 		margin-top: 35px;

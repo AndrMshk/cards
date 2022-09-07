@@ -1,14 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { useAppDispatch, useAppSelector } from '../../../app/bll-dal/store';
 import { sortPacksByCardsCountAction } from '../bll-dal/packs-reducer';
 
-type x = {
-  tempValues: any, setTempValues: any
-}
-
-export const SliderFilter = ({setTempValues, tempValues}:x) => {
+export const SliderFilter = ({ setTempValues, tempValues }: SliderFilterPropsType) => {
 
   const dispatch = useAppDispatch();
 
@@ -17,19 +13,14 @@ export const SliderFilter = ({setTempValues, tempValues}:x) => {
   const maxCardsCount = useAppSelector(state => state.packs.maxCardsCount);
   const isLoading = useAppSelector(state => state.app.isLoading);
 
-
-
   useEffect(() => {
     setTempValues({ min: minCardsCount, max: maxCardsCount });
-    // @ts-ignore
-    if (filterByCardsCount.min < tempValues.max || filterByCardsCount.max > tempValues.min) {
-      dispatch(sortPacksByCardsCountAction({ min: undefined, max: undefined }));
+    if (filterByCardsCount.min && filterByCardsCount.max) {
+      if (filterByCardsCount.min < tempValues.max || filterByCardsCount.max > tempValues.min) {
+        dispatch(sortPacksByCardsCountAction({ min: undefined, max: undefined }));
+      }
     }
   }, [minCardsCount, maxCardsCount]);
-
-  useEffect(() => {
-
-  }, []);
 
   const handleChange = (event: Event, newValue: number | number[], activeThumb: number) => {
     if (!Array.isArray(newValue)) {
@@ -60,3 +51,7 @@ export const SliderFilter = ({setTempValues, tempValues}:x) => {
     </Box>
   );
 };
+
+type SliderFilterPropsType = {
+  tempValues: any, setTempValues: any
+}

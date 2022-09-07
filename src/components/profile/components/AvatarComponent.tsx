@@ -8,7 +8,7 @@ import { uploadHandler } from '../../../utils/convertorToBase64/conventorToBase6
 import { setNewUserAvatar } from '../bll-dal/profile-async-actions';
 import { setAppErrorAction } from '../../../app/bll-dal/app-reducer';
 
-export const AvatarComponent: React.FC<AvatarPropsType> = () => {
+export const AvatarComponent = () => {
 
   const dispatch = useAppDispatch();
 
@@ -44,4 +44,3 @@ export const AvatarComponent: React.FC<AvatarPropsType> = () => {
   );
 };
 
-type AvatarPropsType = {}

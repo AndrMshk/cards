@@ -92,7 +92,7 @@ export const setMinMaxCardsCountAction = (minCardsCount: number, maxCardsCount: 
 } as const);
 export const resetAllFiltersAction = () => ({ type: 'packs/RESET-FILTERS' } as const);
 export const updatePackAction = (packId: string, params: UpdatePackParamsType) =>
-  ({ type: 'packs/UPDATE-PACK', packId, payload: {name: params.name, deckCover: params.deckCover} } as const);
+  ({ type: 'packs/UPDATE-PACK', packId, payload: { name: params.name, deckCover: params.deckCover } } as const);
 
 type InitialStateType = typeof initialState
 export type updatePacActionType = ReturnType<typeof updatePackAction>

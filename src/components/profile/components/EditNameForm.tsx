@@ -14,7 +14,7 @@ export const EditNameForm: React.FC<EditNameFormPropsType> = (
   };
 
   return (
-    <FormControl style={{height: '75px', paddingTop: '16px'}}>
+    <FormControl style={{ height: '75px', paddingTop: '16px' }}>
       <form onSubmit={handleSubmit} className={style.editForm}>
         <Input
           autoFocus
@@ -30,13 +30,11 @@ export const EditNameForm: React.FC<EditNameFormPropsType> = (
               <Button
                 variant="contained"
                 style={{ height: '24px', width: '54px' }}
-                type={'submit'}
+                type="submit"
                 disabled={!!error}
               >SAVE
               </Button>
-            </InputAdornment>
-          }
-        />
+            </InputAdornment>} />
       </form>
     </FormControl>
   );

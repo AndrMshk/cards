@@ -50,10 +50,7 @@ export const ControlPanel = () => {
           }}
           disabled={isLoading}
           color="error" size="small"
-          startIcon={
-            <HighlightOffIcon
-              style={{ color: (isLoading ? '#bdbdbd' : '#1976d2') }} />}
-        />
+          startIcon={<HighlightOffIcon style={{ color: (isLoading ? '#bdbdbd' : '#1976d2') }} />} />
       </div>
     </div>
   );

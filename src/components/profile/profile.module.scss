@@ -1,14 +1,13 @@
+@import './src/common/styles/mixins';
+
 .main {
-	display: flex;
-	justify-content: center;
+	@include flex(center, row, center);
+
 	.content {
+		@include flex(space-between, column, center);
 		height: 408px;
 		width: 413px;
 		margin-top: 60px;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		align-items: center;
 		.button {
 			background: #fcfcfc;
 			border: none;
@@ -22,16 +21,12 @@
 		}
 		.name {
 			margin-top: 20px;
+			@include flex(center, row, center);
 			height: 75px;
-			display: flex;
-			justify-content: center;
-			align-items: center;
 		}
 		.editForm {
+			@include flex(center, row, center);
 			height: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
 			margin-bottom: 0;
 			padding-bottom: 0;
 		}
