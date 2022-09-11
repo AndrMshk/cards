@@ -1,0 +1,69 @@
+@import './src/common/styles/mixins';
+
+.main {
+	@include flex(space-between, column, center);
+	position: absolute;
+	width: 400px;
+	height: 500px;
+	top: 70px;
+	right: 20px;
+	z-index: 10;
+	h3 {
+		margin-bottom: 0;
+	}
+	.messages {
+		overflow-y: scroll;
+		width: 80%;
+		height: 400px;
+		margin: 20px auto;
+		background-color: rgba(25, 118, 210, 0.1);
+		border-radius: 10px;
+		.message {
+			width: 90%;
+			margin: 8px 10px;
+			word-wrap: break-word;
+			.item {
+				background-color: rgb(201, 223, 243);
+				border-radius: 5px;
+			}
+		}
+		&::-webkit-scrollbar {
+			width: 20px;
+		}
+		&::-webkit-scrollbar-track {
+			box-shadow: inset 0 0 5px grey;
+			border-radius: 10px;
+		}
+		&::-webkit-scrollbar-thumb {
+			background-color: rgba(25, 118, 210, 0.1);
+			border-radius: 10px;
+			box-shadow: inset 0 0 5px grey;
+			&:hover {
+				background-color: #7b7b7b;
+				box-shadow: inset 0 0 5px rgba(25, 118, 210, 0.1);
+			}
+		}
+	}
+	.sendBlock {
+		@include flex(space-between, row, center);
+		gap: 5px;
+		height: 30px;
+		width: 70%;
+		margin: 5px 10px 20px;
+		button {
+			border-radius: 30px;
+			text-transform: none;
+			font-weight: 500;
+			font-size: 16px;
+			height: 100%;
+			width: 30%;
+		}
+		input {
+			padding: 0 10px;
+			border-radius: 30px;
+			height: 100%;
+			width: 100%;
+			box-sizing: border-box;
+		}
+	}
+}

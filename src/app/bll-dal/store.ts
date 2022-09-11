@@ -7,6 +7,8 @@ import { profileReducer } from '../../components/profile/bll-dal/profile-reducer
 import { DispatchType, RootStateType } from './types';
 import { cardsReducer } from '../../components/cards/bll-dal/cards-reducer';
 import { packsReducer } from '../../components/packs/bll-dal/packs-reducer';
+import { chatReducer } from '../../components/chat/bll-dal/chat-reducer';
+
 
 export const rootReducer = combineReducers({
   app: appReducer,
@@ -14,6 +16,7 @@ export const rootReducer = combineReducers({
   profile: profileReducer,
   packs: packsReducer,
   cards: cardsReducer,
+  chat: chatReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));

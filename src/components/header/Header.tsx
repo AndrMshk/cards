@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import incubatorLogo from '../../assets/incubator.png';
 import { useNavigate } from 'react-router-dom';
 import style from './header.module.scss';
@@ -6,11 +6,23 @@ import { useAppDispatch, useAppSelector } from '../../app/bll-dal/store';
 import { Avatar, Button, LinearProgress } from '@mui/material';
 import { logout } from '../auth/bll-dal/auth-async-actions';
 import { PositionedMenu } from '../../common/optionMenu/OptionMenu';
+import ForumIcon from '@mui/icons-material/Forum';
+import { Chat } from '../chat/Chat';
+import {
+  closeConnectionTC,
+  initAllMessagesTC,
+  initNewMessageTC,
+  openConnectionTC,
+  setReadMessagesCountAction,
+  setUserNameTC,
+} from '../chat/bll-dal/chat-reducer';
 
 export const Header = () => {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const [isOpenChat, setIsOpenChat] = useState(false);
 
   const pathsMenuData = [
     {
@@ -65,6 +77,21 @@ export const Header = () => {
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
   const isLoading = useAppSelector(state => state.app.isLoading);
   const { avatar, name } = useAppSelector(state => state.profile);
+  const { messages, readMessagesCount } = useAppSelector(state => state.chat);
+
+  useEffect(() => {
+    dispatch(setReadMessagesCountAction(messages.length));
+  }, [isOpenChat]);
+
+  useEffect(() => {
+    dispatch(setUserNameTC(name));
+    dispatch(openConnectionTC());
+    dispatch(initAllMessagesTC());
+    dispatch(initNewMessageTC());
+    return () => {
+      dispatch(closeConnectionTC());
+    };
+  }, []);
 
   return (
     <div className={style.main}>
@@ -75,19 +102,33 @@ export const Header = () => {
         </div>
       </PositionedMenu>
       {isLoggedIn
-        ? <PositionedMenu items={profileMenuData}>
-          <div className={style.profileInfo}>
-            <h5>{name}</h5>
-            <Avatar
-              className={style.avatar}
-              alt="Remy Sharp"
-              src={avatar} />
-          </div>
-        </PositionedMenu>
+        ? <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '20px',
+          position: 'relative',
+        }}>
+          <PositionedMenu items={profileMenuData}>
+            <div className={style.profileInfo}>
+              <h5>{name}</h5>
+              <Avatar
+                className={style.avatar}
+                alt="Remy Sharp"
+                src={avatar} />
+            </div>
+          </PositionedMenu>
+          <ForumIcon style={{ cursor: 'pointer' }} onClick={() => {setIsOpenChat(!isOpenChat);}} />
+          {!isOpenChat && readMessagesCount !== messages.length &&
+          <span className={style.messagesCount}>{messages.length - readMessagesCount}</span>}
+        </div>
         : <Button
           variant="contained"
           onClick={() => navigate('/login')}>Sign in</Button>}
+      {isOpenChat && <Chat setIsOpenChat={setIsOpenChat} />}
     </div>
   );
 };
+
+
 

@@ -2,6 +2,7 @@
 
 .main {
 	@include flex(space-around, row, center);
+	position: relative;
 	box-shadow: 0 2px 10px rgba(109, 109, 109, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 	height: 60px;
 	background-color: #fcfcfc;
@@ -22,6 +23,7 @@
 	}
 	.profileInfo {
 		@include flex(center, row, center);
+		position: relative;
 		gap: 12px;
 		cursor: pointer;
 		.avatar {
@@ -34,5 +36,12 @@
 		width: 100%;
 		position: absolute;
 		top: 60px
+	}
+	.messagesCount {
+		display: block;
+		font-weight: bold;
+		position: absolute;
+		top: 6px;
+		right: -22px;
 	}
 }
