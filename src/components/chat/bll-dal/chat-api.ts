@@ -1,26 +1,29 @@
 import socketIo from 'socket.io-client';
 import { MessageType } from '../../../app/bll-dal/types';
 
-const socket = socketIo('https://neko-back.herokuapp.com/');
-
 export const chatAPI = {
+
+  socket: null as null | SocketIOClient.Socket,
+
   openConnection() {
-    socket.emit('init');
+    this.socket = socketIo('https://neko-back.herokuapp.com/');
+    this.socket.emit('init');
   },
   initAllMessages(getAllMessages: (allMassages: MessageType[]) => void) {
-    socket.on('init-messages-published', getAllMessages);
+    this.socket?.on('init-messages-published', getAllMessages);
   },
   initNewMessage(getNewMessage: (message: MessageType) => void) {
-    socket.on('new-message-sent', getNewMessage);
+    this.socket?.on('new-message-sent', getNewMessage);
   },
   setUserName(userName: string) {
-    socket.emit('client-name-sent', userName);
+    this.socket?.emit('client-name-sent', userName);
   },
   sentMessage(messageText: string) {
-    socket.emit('client-message-sent', messageText);
+    this.socket?.emit('client-message-sent', messageText);
   },
   closeConnection() {
-    socket.disconnect();
+    this.socket?.disconnect();
+    this.socket = null;
   },
 };
 

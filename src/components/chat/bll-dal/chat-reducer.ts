@@ -43,31 +43,22 @@ export type ActionsType =
   | SetUserNameActionType
   | SetReadMessagesCountActionType
 
-export const openConnectionTC = (): ThunkType => async() => {
-  await chatAPI.openConnection();
-};
-
-export const initAllMessagesTC = (): ThunkType => async dispatch => {
-  await chatAPI.initAllMessages(messages => {
+export const openConnectionTC = (userName: string): ThunkType => dispatch => {
+  chatAPI.openConnection();
+  chatAPI.initAllMessages(messages => {
     dispatch(initAllMessagesAction(messages));
   });
-};
-
-export const initNewMessageTC = (): ThunkType => async dispatch => {
-  await chatAPI.initNewMessage(message => {
+  chatAPI.initNewMessage(message => {
     dispatch(initNewMessageAction(message));
   });
-};
-
-export const setUserNameTC = (userName: string): ThunkType => async dispatch => {
-  await chatAPI.setUserName(userName);
+  chatAPI.setUserName(userName);
   dispatch(setUserNameAction(userName));
 };
 
-export const sendNewMessageTextTC = (messageText: string): ThunkType => async() => {
-  await chatAPI.sentMessage(messageText);
+export const sendNewMessageTextTC = (messageText: string): ThunkType => () => {
+  chatAPI.sentMessage(messageText);
 };
 
-export const closeConnectionTC = (): ThunkType => async() => {
-  await chatAPI.closeConnection();
+export const closeConnectionTC = (): ThunkType => () => {
+  chatAPI.closeConnection();
 };

@@ -8,14 +8,7 @@ import { logout } from '../auth/bll-dal/auth-async-actions';
 import { PositionedMenu } from '../../common/optionMenu/OptionMenu';
 import ForumIcon from '@mui/icons-material/Forum';
 import { Chat } from '../chat/Chat';
-import {
-  closeConnectionTC,
-  initAllMessagesTC,
-  initNewMessageTC,
-  openConnectionTC,
-  setReadMessagesCountAction,
-  setUserNameTC,
-} from '../chat/bll-dal/chat-reducer';
+import { closeConnectionTC, openConnectionTC, setReadMessagesCountAction } from '../chat/bll-dal/chat-reducer';
 
 export const Header = () => {
 
@@ -84,14 +77,15 @@ export const Header = () => {
   }, [isOpenChat]);
 
   useEffect(() => {
-    dispatch(setUserNameTC(name));
-    dispatch(openConnectionTC());
-    dispatch(initAllMessagesTC());
-    dispatch(initNewMessageTC());
+    dispatch(openConnectionTC(name));
     return () => {
       dispatch(closeConnectionTC());
     };
   }, []);
+
+  useEffect(() => {
+    setIsOpenChat(false);
+  }, [isLoggedIn]);
 
   return (
     <div className={style.main}>
