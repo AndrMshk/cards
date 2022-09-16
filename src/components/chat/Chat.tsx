@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/bll-dal/store';
 import { sendNewMessageTextTC } from './bll-dal/chat-reducer';
 import style from './chat.module.scss';
