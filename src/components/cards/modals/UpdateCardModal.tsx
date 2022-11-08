@@ -4,7 +4,7 @@ import { TextField } from '@mui/material';
 import { BasicModal } from '../../../common/basicModal/BasicModal';
 import { updateCard } from '../bll-dal/cards-async-actions';
 import style from './modals.module.scss';
-import { convertFileToBase64 } from '../../../utils/convertorToBase64/conventorToBase64';
+import { convertFileToBase64 } from '../../../utils/conventorToBase64';
 
 export const UpdateCardModal: FC<UpdateCardPropsType> =
   memo(({ cardId, cardQuestion, cardAnswer, isOpenModal, setIsOpenModal, questionImg }) => {

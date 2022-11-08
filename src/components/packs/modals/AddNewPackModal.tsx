@@ -4,7 +4,7 @@ import { useAppDispatch } from '../../../app/bll-dal/store';
 import { BasicModal } from '../../../common/basicModal/BasicModal';
 import { createPack } from '../bll-dal/packs-async-actions';
 import style from './modals.module.scss';
-import { convertFileToBase64 } from '../../../utils/convertorToBase64/conventorToBase64';
+import { convertFileToBase64 } from '../../../utils/conventorToBase64';
 
 export const AddNewPackModal: React.FC<AddNewPackPropsType> = memo(({ isOpenModal, setIsOpenModal }) => {
 

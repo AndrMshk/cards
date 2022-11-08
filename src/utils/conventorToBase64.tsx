@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
-import { setAppErrorAction } from '../../app/bll-dal/app-reducer';
-import { DispatchType, ThunkType } from '../../app/bll-dal/types';
+import { setAppErrorAction } from '../app/bll-dal/app-reducer';
+import { DispatchType, ThunkType } from '../app/bll-dal/types';
 
 export const uploadHandler = (
   e: ChangeEvent<HTMLInputElement>, dispatch: DispatchType, action: (value: string | undefined) => ThunkType,

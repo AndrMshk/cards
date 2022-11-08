@@ -6,6 +6,9 @@
 		height: 450px;
 		width: 413px;
 		margin-top: 60px;
+		@media screen and (max-width: 450px) {
+			width: 300px;
+		}
 		@include flex(space-between, column, center);
 	}
 	h2 {
@@ -19,6 +22,9 @@
 		font-weight: 500;
 		font-size: 16px;
 		margin-bottom: 50px;
+		@media screen and (max-width: 450px) {
+			width: auto;
+		}
 	}
 	.info {
 		text-align: center;

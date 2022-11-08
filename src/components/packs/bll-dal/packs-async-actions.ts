@@ -1,7 +1,6 @@
 import { ParamsGetPackRequestType, ThunkType } from '../../../app/bll-dal/types';
-import { setAppErrorAction, setAppIsLoadingAction } from '../../../app/bll-dal/app-reducer';
+import { setAppIsLoadingAction } from '../../../app/bll-dal/app-reducer';
 import { packsApi } from './packsApi';
-import axios from 'axios';
 import {
   createPackAction,
   deletePackAction,
@@ -11,6 +10,7 @@ import {
   setPacksAction,
   updatePackAction,
 } from './packs-reducer';
+import { axiosErrorHandle } from '../../../utils/axiosErrorHandle';
 
 export const setPacks = (params: ParamsGetPackRequestType): ThunkType => async dispatch => {
   try {
@@ -21,11 +21,7 @@ export const setPacks = (params: ParamsGetPackRequestType): ThunkType => async d
     dispatch(setMinMaxCardsCountAction(res.data.minCardsCount, res.data.maxCardsCount));
     dispatch(setPacksAction(res.data.cardPacks, res.data.cardPacksTotalCount));
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      dispatch(setAppErrorAction(error.message));
-    } else {
-      dispatch(setAppErrorAction('Some error'));
-    }
+    axiosErrorHandle(error, dispatch);
   } finally {
     dispatch(setAppIsLoadingAction(false));
   }
@@ -37,11 +33,7 @@ export const createPack = (newPackName?: string, cover?: string): ThunkType => a
     const res = await packsApi.createPack(newPackName, cover);
     dispatch(createPackAction(res.data.newCardsPack));
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      dispatch(setAppErrorAction(error.message));
-    } else {
-      dispatch(setAppErrorAction('Some error'));
-    }
+    axiosErrorHandle(error, dispatch);
   } finally {
     dispatch(setAppIsLoadingAction(false));
   }
@@ -53,11 +45,7 @@ export const deletePack = (packId: string): ThunkType => async dispatch => {
     await packsApi.deletePack(packId);
     dispatch(deletePackAction(packId));
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      dispatch(setAppErrorAction(error.message));
-    } else {
-      dispatch(setAppErrorAction('Some error'));
-    }
+    axiosErrorHandle(error, dispatch);
   } finally {
     dispatch(setAppIsLoadingAction(false));
   }
@@ -69,11 +57,7 @@ export const updatePack = (packId: string, name?: string, deckCover?: string): T
     await packsApi.updatePack(packId, name, deckCover);
     dispatch(updatePackAction(packId, { deckCover, name }));
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      dispatch(setAppErrorAction(error.message));
-    } else {
-      dispatch(setAppErrorAction('Some error'));
-    }
+    axiosErrorHandle(error, dispatch);
   } finally {
     dispatch(setAppIsLoadingAction(false));
   }

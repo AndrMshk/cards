@@ -17,8 +17,7 @@ export const ErrorSnackbar = () => {
 
   const error = useAppSelector(state => state.app.error);
 
-  const [{ vertical, horizontal }] = useState<State>(
-    { open: false, vertical: 'bottom', horizontal: 'center' });
+  const [{ vertical, horizontal }] = useState<State>({ open: false, vertical: 'bottom', horizontal: 'center' });
 
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {

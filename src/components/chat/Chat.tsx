@@ -1,19 +1,18 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/bll-dal/store';
 import { sendNewMessageTextTC } from './bll-dal/chat-reducer';
 import style from './chat.module.scss';
 import { Button, Paper } from '@mui/material';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+import { Options } from 'overlayscrollbars';
 
 export const Chat: FC<ChatPropsType> = ({ setIsOpenChat }) => {
 
   const dispatch = useAppDispatch();
-  const scrollRef = useRef<null | HTMLElement>(null);
   const [textMessage, setTextMessage] = useState('');
 
   const messages = useAppSelector(state => state.chat.messages);
   const userName = useAppSelector(state => state.profile.name);
-
-  useEffect(() => {scrollRef.current?.scrollIntoView({ behavior: 'smooth' });}, [messages]);
 
   const sendMessageHandler = () => {
     if (textMessage.trim() !== '') {
@@ -30,14 +29,72 @@ export const Chat: FC<ChatPropsType> = ({ setIsOpenChat }) => {
     }
   };
 
+
+
+  //SCROLL
+  const [scrollDown, setScrollDown] = useState(false);
+
+  const getScroll = (refCurrent: OverlayScrollbarsComponent): { scrollPosition: number; overflowAmount: number } => ({
+    scrollPosition: refCurrent.osInstance()?.scroll().position.y!,
+    overflowAmount: refCurrent.osInstance()?.getState('overflowAmount.y'),
+  });
+
+  const chatMessagesRef = useRef<OverlayScrollbarsComponent>(null);
+  const onContentSizeChanged = () => {
+    if (chatMessagesRef.current) {
+      const { overflowAmount, scrollPosition } = getScroll(chatMessagesRef.current);
+
+      if (overflowAmount - scrollPosition > 100) {
+        if (scrollDown && chatMessagesRef.current) {
+          chatMessagesRef.current.osInstance()?.scroll({ y: '100%' });
+          setScrollDown(false);
+        } else {
+          chatMessagesRef.current.osInstance()?.scroll({ y: scrollPosition });
+        }
+      } else {
+        chatMessagesRef.current.osInstance()?.scroll({ y: '100%' });
+      }
+    }
+  };
+
+  const onScrollStop = (): void => {
+    if (chatMessagesRef.current) {
+      const { overflowAmount, scrollPosition } = getScroll(chatMessagesRef.current);
+    }
+  };
+
+  const onHostSizeChanged = () => {
+    if (chatMessagesRef.current) {
+      chatMessagesRef.current.osInstance()?.scroll({ y: '100%' });
+    }
+  };
+
+  const options: Options = {
+    scrollbars: {
+      clickScrolling: true,
+      autoHide: 'leave',
+      autoHideDelay: 0,
+    },
+    callbacks: {
+      onContentSizeChanged,
+      onScrollStop,
+      onHostSizeChanged,
+    },
+  };
+
   return (
     <Paper className={style.main}>
       <h3>Chat</h3>
-      <div className={style.messages}>
+      <OverlayScrollbarsComponent
+        className={style.messages}
+        ref={chatMessagesRef}
+        options={options}>
         {messages.map(el => {
           if (el.user.name === userName) {
             return (
-              <div key={el._id} className={style.message} style={{ textAlign: 'right' }}>
+              <div key={el._id}
+                   className={style.message}
+                   style={{ textAlign: 'right' }}>
                 <span className={style.item}>{el.message}</span>
               </div>);
           } else {
@@ -50,8 +107,7 @@ export const Chat: FC<ChatPropsType> = ({ setIsOpenChat }) => {
               </div>);
           }
         })}
-        <span ref={scrollRef} />
-      </div>
+      </OverlayScrollbarsComponent>
       <div className={style.sendBlock}>
         <input
           autoFocus

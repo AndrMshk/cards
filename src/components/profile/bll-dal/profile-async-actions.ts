@@ -1,8 +1,8 @@
 import { ThunkType } from '../../../app/bll-dal/types';
-import { setAppErrorAction, setAppIsLoadingAction } from '../../../app/bll-dal/app-reducer';
+import { setAppIsLoadingAction } from '../../../app/bll-dal/app-reducer';
 import { profileApi } from './profile-api';
-import axios from 'axios';
 import { updateUserAction } from './profile-reducer';
+import { axiosErrorHandle } from '../../../utils/axiosErrorHandle';
 
 export const setNewUserName = (newName: string): ThunkType => async dispatch => {
   try {
@@ -10,11 +10,7 @@ export const setNewUserName = (newName: string): ThunkType => async dispatch => 
     await profileApi.updateUser({ name: newName });
     dispatch(updateUserAction({ name: newName }));
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      dispatch(setAppErrorAction(error.message));
-    } else {
-      dispatch(setAppErrorAction('Some error'));
-    }
+    axiosErrorHandle(error, dispatch);
   } finally {
     dispatch(setAppIsLoadingAction(false));
   }
@@ -26,11 +22,7 @@ export const setNewUserAvatar = (avatar: string | undefined): ThunkType => async
     await profileApi.updateUser({ avatar });
     dispatch(updateUserAction({ avatar: avatar || '' }));
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      dispatch(setAppErrorAction(error.message));
-    } else {
-      dispatch(setAppErrorAction('Some error'));
-    }
+    axiosErrorHandle(error, dispatch);
   } finally {
     dispatch(setAppIsLoadingAction(false));
   }

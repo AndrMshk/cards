@@ -1,7 +1,6 @@
 import { CardType, ParamsGetCardsRequestType, ThunkType } from '../../../app/bll-dal/types';
-import { setAppErrorAction, setAppIsLoadingAction } from '../../../app/bll-dal/app-reducer';
+import { setAppIsLoadingAction } from '../../../app/bll-dal/app-reducer';
 import { cardsApi } from './cardsApi';
-import axios from 'axios';
 import {
   createCardAction,
   deleteCardAction,
@@ -11,6 +10,7 @@ import {
   updateCardAction,
   updateCardGradeAction,
 } from './cards-reducer';
+import { axiosErrorHandle } from '../../../utils/axiosErrorHandle';
 
 export const setCards = (params: ParamsGetCardsRequestType): ThunkType => async dispatch => {
   try {
@@ -21,11 +21,7 @@ export const setCards = (params: ParamsGetCardsRequestType): ThunkType => async 
     dispatch(setCardsAction
     (res.data.cards, res.data.cardsTotalCount, res.data.packUserId, res.data.packName, res.data.packDeckCover));
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      dispatch(setAppErrorAction(error.message));
-    } else {
-      dispatch(setAppErrorAction('Some error'));
-    }
+    axiosErrorHandle(error, dispatch);
   } finally {
     dispatch(setAppIsLoadingAction(false));
   }
@@ -37,11 +33,7 @@ export const createCard = (newCard: CardType): ThunkType => async dispatch => {
     const res = await cardsApi.createCard(newCard);
     dispatch(createCardAction(res.data.newCard));
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      dispatch(setAppErrorAction(error.message));
-    } else {
-      dispatch(setAppErrorAction('Some error'));
-    }
+    axiosErrorHandle(error, dispatch);
   } finally {
     dispatch(setAppIsLoadingAction(false));
   }
@@ -53,11 +45,7 @@ export const deleteCard = (cardId: string): ThunkType => async dispatch => {
     await cardsApi.deleteCard(cardId);
     dispatch(deleteCardAction(cardId));
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      dispatch(setAppErrorAction(error.message));
-    } else {
-      dispatch(setAppErrorAction('Some error'));
-    }
+    axiosErrorHandle(error, dispatch);
   } finally {
     dispatch(setAppIsLoadingAction(false));
   }
@@ -69,11 +57,7 @@ export const updateCard = (cardId: string, question?: string, answer?: string): 
     await cardsApi.updateCard(cardId, question, answer);
     dispatch(updateCardAction(cardId, question, answer));
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      dispatch(setAppErrorAction(error.message));
-    } else {
-      dispatch(setAppErrorAction('Some error'));
-    }
+    axiosErrorHandle(error, dispatch);
   } finally {
     dispatch(setAppIsLoadingAction(false));
   }
@@ -85,11 +69,7 @@ export const updateCardGrade = (cardId: string, grade: number): ThunkType => asy
     const res = await cardsApi.updateGrade(cardId, grade);
     dispatch(updateCardGradeAction(res.data.updatedGrade));
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      dispatch(setAppErrorAction(error.message));
-    } else {
-      dispatch(setAppErrorAction('Some error'));
-    }
+    axiosErrorHandle(error, dispatch);
   } finally {
     dispatch(setAppIsLoadingAction(false));
   }

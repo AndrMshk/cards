@@ -3,7 +3,7 @@ import { useAppDispatch } from '../../../app/bll-dal/store';
 import { TextField } from '@mui/material';
 import { updatePack } from '../bll-dal/packs-async-actions';
 import { BasicModal } from '../../../common/basicModal/BasicModal';
-import { convertFileToBase64 } from '../../../utils/convertorToBase64/conventorToBase64';
+import { convertFileToBase64 } from '../../../utils/conventorToBase64';
 import style from './modals.module.scss';
 
 export const UpdatePackModal: React.FC<UpdatePackType> =

@@ -4,7 +4,7 @@ import CameraAltOutlinedIcon from '@mui/icons-material/CameraAltOutlined';
 import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
 import { useAppDispatch, useAppSelector } from '../../../app/bll-dal/store';
-import { uploadHandler } from '../../../utils/convertorToBase64/conventorToBase64';
+import { uploadHandler } from '../../../utils/conventorToBase64';
 import { setNewUserAvatar } from '../bll-dal/profile-async-actions';
 import { setAppErrorAction } from '../../../app/bll-dal/app-reducer';
 

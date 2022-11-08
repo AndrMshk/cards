@@ -4,7 +4,7 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { CardsTable } from './table/CardsTable';
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
-import useDebounce from '../../utils/hooks/useDebounce';
+import useDebounce from '../../utils/useDebounce';
 import { AddNewCardModal } from './modals/AddNewCardModal';
 import { BackButtonComponent } from '../../common/backButtonComponent/BackButtonComponent';
 import { setCards } from './bll-dal/cards-async-actions';

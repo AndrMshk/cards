@@ -76,6 +76,8 @@ export const Header = () => {
     dispatch(setReadMessagesCountAction(messages.length));
   }, [isOpenChat]);
 
+
+
   useEffect(() => {
     dispatch(openConnectionTC(name));
     return () => {

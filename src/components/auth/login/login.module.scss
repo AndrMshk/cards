@@ -7,6 +7,10 @@
 		height: 552px;
 		width: 413px;
 		margin-top: 60px;
+		@media screen and (max-width: 450px) {
+			width: auto;
+			padding: 0 30px;
+		}
 	}
 	h2 {
 		margin-top: 35px;
@@ -16,10 +20,16 @@
 		height: 100%;
 		width: 347px;
 		padding-bottom: 42px;
+		@media screen and (max-width: 450px) {
+			width: auto;
+		}
 		.input {
 			@include flex(center, row, center);
 			width: 347px;
 			height: 80px;
+			@media screen and (max-width: 450px) {
+				width: 250px;
+			}
 			div {
 				width: 100%;
 			}
