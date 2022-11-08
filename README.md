@@ -15,6 +15,3 @@ Stack: <br/>
 -   MUI
 
 
-Test account: <br/>
-email: test031@gmail.com <br/>
-password: 123123123123
